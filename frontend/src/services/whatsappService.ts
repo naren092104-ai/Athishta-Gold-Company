@@ -5,6 +5,7 @@ export interface WhatsAppPayload {
   flow: 'selling' | 'buying' | 'pawn_redemption' | 'doorstep' | 'branch_enquiry' | 'general' | 'quote';
   name: string;
   mobile: string;
+  location?: string;
   service?: string;
   purity?: string;
   weight?: number | string;
@@ -22,6 +23,7 @@ export function generateWhatsAppMessage(payload: WhatsAppPayload): string {
     flow,
     name,
     mobile,
+    location,
     service = 'Gold Buying Service',
     purity = '22K / 916',
     weight,
@@ -54,6 +56,7 @@ export function generateWhatsAppMessage(payload: WhatsAppPayload): string {
     '',
     `*Customer Name:* ${name?.trim() || 'Customer'}`,
     `*Mobile Number:* ${mobile?.trim() || 'Provided on chat'}`,
+    ...(location?.trim() ? [`*Location:* ${location.trim()}`] : []),
     `*Service Requested:* ${service}`
   ];
 

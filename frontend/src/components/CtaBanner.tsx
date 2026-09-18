@@ -1,6 +1,5 @@
 import React from 'react';
-import { MessageCircle, Phone } from 'lucide-react';
-import { COMPANY_PHONE } from '../data/branches';
+import { MessageCircle, ArrowRight } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
 
 interface CtaBannerProps {
@@ -12,54 +11,55 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onOpenQuoteModal }) => {
     flow: 'general',
     name: 'Customer',
     mobile: '',
-    service: 'Gold Valuation',
+    service: 'Gold Valuation & Final Quote',
   });
 
+  const handleQuoteClick = () => {
+    const el = document.getElementById('gold-calculator');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (onOpenQuoteModal) {
+      onOpenQuoteModal();
+    }
+  };
+
   return (
-    <section className="relative bg-[#0E0906] text-white overflow-hidden py-12 sm:py-16 border-y border-[#A77B28]/40">
-      {/* Background Gold Jewelry Texture */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1920&q=80"
-          alt="Luxury gold texture"
-          className="w-full h-full object-cover opacity-25"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0E0906] via-[#0E0906]/95 to-[#0E0906]/80" />
-      </div>
+    <section className="relative bg-[#15110D] text-[#FFFDF8] py-16 sm:py-20 lg:py-24 border-t border-[#C9A227]/30 overflow-hidden">
+      {/* Subtle gold ambient glow in corners */}
+      <div className="absolute -top-24 -left-24 w-72 h-72 bg-[#C9A227]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#C9A227]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
         
-        {/* Left Text */}
-        <div className="space-y-1.5 text-center md:text-left">
-          <span className="text-[11px] font-bold text-[#E5B54F] uppercase tracking-widest block">
-            Instant Liquidity • Guaranteed Security
-          </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-white">
-            Turn Your Gold into <span className="luxury-gold-text">Opportunities</span>
-          </h2>
-          <p className="text-xs sm:text-sm text-zinc-300 max-w-xl">
-            Trusted by thousands across Tamil Nadu. Experience the certified Athishta prestige today.
-          </p>
-        </div>
+        {/* Heading */}
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight text-white">
+          Ready to Know Your <span className="gold-gradient-text">Gold's Value?</span>
+        </h2>
 
-        {/* Right CTA Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 shrink-0">
+        {/* One Short Sentence */}
+        <p className="text-base sm:text-lg text-zinc-300 max-w-xl mx-auto leading-relaxed">
+          Experience transparent evaluation, fair pricing, and instant payment today.
+        </p>
+
+        {/* Two Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <button
+            type="button"
+            onClick={handleQuoteClick}
+            className="px-7 py-3.5 rounded-xl font-bold text-sm text-[#15110D] bg-gradient-to-r from-[#C9A227] via-[#DFB83D] to-[#C9A227] hover:brightness-105 transition-all flex items-center gap-2 shadow-lg shadow-[#C9A227]/25 cursor-pointer active:scale-98"
+          >
+            <span>Get Gold Quote</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold text-[#140E0A] bg-gradient-to-r from-[#E5B54F] via-[#F3C34F] to-[#C89B3C] hover:brightness-105 transition-all flex items-center gap-2 shadow-lg shadow-[#A77B28]/25 cursor-pointer active:scale-95 border border-[#FFF3D1]"
+            className="px-7 py-3.5 rounded-xl font-bold text-sm text-[#FFFDF8] bg-white/10 hover:bg-white/15 border border-white/20 hover:border-[#C9A227]/50 transition-all flex items-center gap-2 cursor-pointer active:scale-98"
           >
-            <MessageCircle className="w-4 h-4 fill-current" />
-            <span>Get Quote on WhatsApp</span>
-          </a>
-
-          <a
-            href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`}
-            className="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/25 transition-all flex items-center gap-2 cursor-pointer active:scale-95 backdrop-blur-xs"
-          >
-            <Phone className="w-4 h-4 text-[#E5B54F]" />
-            <span>Call Our Concierge</span>
+            <MessageCircle className="w-4 h-4 text-[#C9A227] fill-[#C9A227]/20" />
+            <span>WhatsApp Us</span>
           </a>
         </div>
 
@@ -67,3 +67,4 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onOpenQuoteModal }) => {
     </section>
   );
 };
+

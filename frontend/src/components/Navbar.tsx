@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Menu, X, Facebook, Instagram, Youtube } from 'lucide-react';
-import { COMPANY_PHONE } from '../data/branches';
+import { MessageCircle, Menu, X, Search } from 'lucide-react';
 import { getWhatsAppUrl } from '../services/whatsappService';
 import { AthishtaLogo } from './AthishtaLogo';
 
@@ -21,23 +20,12 @@ export const Navbar: React.FC<NavbarProps> = ({
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = [
-        'home',
-        'about',
-        'services',
-        'gold-rate',
-        'branches',
-        'gallery',
-        'testimonials',
-        'faq',
-        'contact'
-      ];
-
+      const sections = ['home', 'about', 'services', 'gold-rate', 'branches', 'contact'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 140 && rect.bottom >= 140) {
+          if (rect.top <= 120 && rect.bottom >= 120) {
             setActiveSection(sectionId);
             break;
           }
@@ -51,13 +39,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems = [
     { label: 'Home', id: 'home' },
-    { label: 'About Us', id: 'about' },
+    { label: 'About', id: 'about' },
     { label: 'Services', id: 'services' },
     { label: 'Gold Rate', id: 'gold-rate' },
     { label: 'Branches', id: 'branches' },
-    { label: 'Gallery', id: 'gallery' },
-    { label: 'Testimonials', id: 'testimonials' },
-    { label: 'FAQ', id: 'faq' },
     { label: 'Contact', id: 'contact' },
   ];
 
@@ -66,193 +51,154 @@ export const Navbar: React.FC<NavbarProps> = ({
     onNavigateSection(sectionId);
   };
 
-  const whatsappDirectUrl = getWhatsAppUrl({
+  const handleGetQuoteClick = () => {
+    const calc = document.getElementById('gold-calculator');
+    if (calc) {
+      calc.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      onOpenQuoteModal('Instant Gold Quote');
+    }
+  };
+
+  const whatsappUrl = getWhatsAppUrl({
     flow: 'general',
     name: 'Customer',
     mobile: '',
-    service: 'Gold Quote Request'
+    service: 'Gold Valuation & Quote'
   });
 
   return (
-    <>
-      {/* 1. Top Bar with Luxury Credentials & Live Ticker */}
-      <div className="bg-[#140E0A] text-white/90 border-b border-[#A77B28]/30 py-1.5 px-4 sm:px-6 lg:px-8 text-[11px] sm:text-xs">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="hidden md:flex items-center gap-2.5 text-[#E5B54F] font-medium tracking-wide">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E5B54F] animate-pulse" />
-              916 BIS Hallmarked Standards
-            </span>
-            <span className="text-zinc-600">•</span>
-            <span>German XRF Laser Testing</span>
-            <span className="text-zinc-600">•</span>
-            <span>Instant IMPS & Cash Payout</span>
-            <span className="text-zinc-600">•</span>
-            <span>6 Premium Showrooms</span>
-          </div>
+    <header
+      className={`sticky top-0 z-50 transition-all duration-200 bg-[#FFFDF8]/95 backdrop-blur-md ${
+        isScrolled
+          ? 'shadow-sm border-b border-[#C9A227]/25 py-3'
+          : 'border-b border-[#C9A227]/15 py-4'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        
+        {/* LEFT: Athishta Gold Logo */}
+        <button
+          onClick={() => handleNavClick('home')}
+          className="cursor-pointer text-left focus:outline-none flex items-center"
+        >
+          <AthishtaLogo variant="circle-red" size="md" showSubtitle={true} />
+        </button>
 
-          <div className="flex items-center justify-between w-full md:w-auto gap-4">
-            {/* Social Media Icons */}
-            <div className="flex items-center gap-2">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-5 h-5 rounded-full bg-white/10 hover:bg-[#1877F2] text-white flex items-center justify-center transition-colors"
-                title="Facebook"
+        {/* CENTER: Clean 6 Nav Links with Luxury Active Pill */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`px-4 py-1.5 text-[14px] rounded-full transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-[#FAF3E0] text-[#8C6D1F] font-bold shadow-2xs border border-[#C9A227]/35'
+                    : 'text-[#171717] hover:text-[#C9A227] hover:bg-[#FAF5EC] font-medium'
+                }`}
               >
-                <Facebook className="w-3 h-3 fill-current" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-5 h-5 rounded-full bg-white/10 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-600 hover:to-purple-600 text-white flex items-center justify-center transition-colors"
-                title="Instagram"
-              >
-                <Instagram className="w-3 h-3" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-5 h-5 rounded-full bg-white/10 hover:bg-red-600 text-white flex items-center justify-center transition-colors"
-                title="YouTube"
-              >
-                <Youtube className="w-3 h-3" />
-              </a>
-            </div>
+                {item.label}
+              </button>
+            );
+          })}
+        </nav>
 
-            {/* Direct Phone Number */}
-            <a
-              href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`}
-              className="flex items-center gap-1.5 font-bold text-white hover:text-[#E5B54F] transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-[#E5B54F]" />
-              <span>{COMPANY_PHONE}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Main Navigation Bar */}
-      <header
-        className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all duration-300 ${
-          isScrolled ? 'shadow-md py-2.5 border-b border-[#A77B28]/20' : 'py-3.5 border-b border-zinc-100'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          
-          {/* Logo Branding: Red Circle Emblem */}
+        {/* RIGHT: Search + Get Quote + WhatsApp */}
+        <div className="hidden sm:flex items-center gap-3">
           <button
-            onClick={() => handleNavClick('home')}
-            className="cursor-pointer text-left focus:outline-none"
+            type="button"
+            onClick={() => {
+              const el = document.getElementById('gold-calculator');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="w-9 h-9 rounded-full bg-[#FAF5EC] hover:bg-[#F8F3E8] border border-[#C9A227]/30 flex items-center justify-center text-[#15110D] hover:text-[#C9A227] transition-all cursor-pointer"
+            title="Search Valuation or Branches"
+            aria-label="Search"
           >
-            <AthishtaLogo variant="circle-red" size="md" showSubtitle={true} />
+            <Search className="w-4 h-4" />
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id || (item.id === 'home' && activeSection === 'home');
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`px-3 py-1.5 text-xs xl:text-[13px] font-semibold rounded-lg transition-all cursor-pointer whitespace-nowrap ${
-                    isActive
-                      ? 'bg-[#A77B28]/15 text-[#8F671E] font-bold border border-[#A77B28]/30'
-                      : 'text-[#2B231B] hover:text-[#A77B28] hover:bg-zinc-50'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </nav>
+          <button
+            onClick={handleGetQuoteClick}
+            className="px-5 py-2 text-xs font-bold text-[#15110D] bg-[#FFFDF8] hover:bg-[#FAF3E0] border border-[#C9A227]/50 rounded-full transition-all cursor-pointer shadow-2xs hover:-translate-y-0.5"
+          >
+            Get Quote
+          </button>
 
-          {/* Right Action CTA Button (Get Quote on WhatsApp) */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            <a
-              href={whatsappDirectUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-[#A77B28] via-[#C29235] to-[#A77B28] hover:shadow-lg hover:shadow-[#A77B28]/20 rounded-xl transition-all active:scale-95 cursor-pointer border border-[#F6D155]/40"
-            >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span>Get Quote on WhatsApp</span>
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <a
-              href={whatsappDirectUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 text-xs font-bold text-white bg-[#A77B28] rounded-lg shadow-sm"
-            >
-              WhatsApp
-            </a>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#140E0A] hover:bg-zinc-100 rounded-lg transition-colors cursor-pointer"
-              aria-label="Toggle navigation menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6 text-[#140E0A]" />}
-            </button>
-          </div>
-
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-5 py-2 text-xs font-bold text-[#15110D] bg-gradient-to-r from-[#C9A227] via-[#DFB83D] to-[#C9A227] hover:brightness-105 rounded-full transition-all shadow-sm cursor-pointer hover:-translate-y-0.5"
+          >
+            <MessageCircle className="w-3.5 h-3.5 fill-current" />
+            <span>WhatsApp</span>
+          </a>
         </div>
-      </header>
+
+        {/* Mobile Hamburger Toggle */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 text-xs font-bold text-[#15110D] bg-[#C9A227] rounded-full shadow-xs"
+          >
+            WhatsApp
+          </a>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-[#171717] hover:bg-[#F8F3E8] rounded-lg transition-colors cursor-pointer"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+      </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden bg-black/60 backdrop-blur-sm flex justify-end animate-fadeIn">
-          <div className="w-4/5 max-w-sm bg-white h-full shadow-2xl flex flex-col p-5 overflow-y-auto">
-            <div className="flex items-center justify-between pb-4 border-b border-zinc-100">
-              <AthishtaLogo variant="circle-red" size="sm" showSubtitle={true} />
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-1.5 text-zinc-600 hover:bg-zinc-100 rounded-md cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <nav className="flex flex-col gap-1 py-4 flex-1">
+        <div className="fixed inset-0 top-[65px] z-50 lg:hidden bg-[#15110D]/50 backdrop-blur-xs flex flex-col">
+          <div className="bg-[#FFFDF8] border-b border-[#C9A227]/20 p-5 shadow-xl space-y-4">
+            <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className="px-3.5 py-3 text-sm font-semibold text-[#140E0A] hover:bg-[#F9F5EC] rounded-xl text-left transition-colors cursor-pointer"
+                  className="px-3 py-2.5 text-left text-sm font-medium text-[#171717] hover:text-[#C9A227] hover:bg-[#F8F3E8] rounded-md transition-colors"
                 >
                   {item.label}
                 </button>
               ))}
             </nav>
 
-            <div className="pt-4 border-t border-zinc-100 space-y-2.5">
+            <div className="pt-3 border-t border-[#F8F3E8] flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleGetQuoteClick();
+                }}
+                className="w-full py-2.5 text-xs font-semibold text-[#15110D] bg-[#F8F3E8] border border-[#C9A227]/40 rounded-lg text-center"
+              >
+                Get Quote
+              </button>
               <a
-                href={whatsappDirectUrl}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 text-xs font-bold text-white bg-[#A77B28] hover:bg-[#8F671E] rounded-xl transition-colors shadow-sm"
+                className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-semibold text-white bg-[#C9A227] rounded-lg"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
-                <span>Get Quote on WhatsApp</span>
-              </a>
-              <a
-                href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`}
-                className="flex items-center justify-center gap-2 w-full py-2.5 text-xs font-bold text-[#140E0A] bg-zinc-100 hover:bg-zinc-200 rounded-xl transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>Call {COMPANY_PHONE}</span>
+                <span>WhatsApp Us</span>
               </a>
             </div>
           </div>
         </div>
       )}
-    </>
+    </header>
   );
 };
+

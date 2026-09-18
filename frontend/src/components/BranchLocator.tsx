@@ -1,173 +1,155 @@
 import React from 'react';
-import { Phone, Navigation, ArrowRight } from 'lucide-react';
+import { Phone, Navigation, Building2, MapPin } from 'lucide-react';
 
 interface BranchInfo {
   id: string;
   name: string;
-  sub: string;
-  address: string;
+  city: string;
+  shortAddress: string;
   phone: string;
-  image: string;
-  mapUrl: string;
+  directionsUrl: string;
+  isHeadOffice?: boolean;
 }
 
 export const BranchLocator: React.FC = () => {
-  // Verified real luxury retail storefronts (NO pills/tablets, NO broken images)
   const branches: BranchInfo[] = [
     {
       id: 'lakshmangudi',
       name: 'Lakshmangudi',
-      sub: '(Head Office)',
-      address: 'TVR Main Road, Lakshmangudi, Thiruvarur - 614102',
+      city: 'Thiruvarur',
+      shortAddress: 'Opp. IOB, TVR Main Road, Lakshmangudi',
       phone: '+919363639955',
-      image: 'https://images.unsplash.com/photo-1772705844321-59e408e4f2d5?auto=format&fit=crop&w=600&q=80',
-      mapUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Lakshmangudi'
+      directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Lakshmangudi',
+      isHeadOffice: true,
     },
     {
       id: 'ambattur',
       name: 'Ambattur',
-      sub: 'Chennai',
-      address: '11 Cycle Road, Ambattur - 600053',
+      city: 'Chennai',
+      shortAddress: '11 Cycle Road, Varadharajapuram, Ambattur',
       phone: '+919363639955',
-      image: 'https://images.unsplash.com/photo-1766573024161-864d65c6442f?auto=format&fit=crop&w=600&q=80',
-      mapUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Ambattur'
+      directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Ambattur',
     },
     {
       id: 'avadi',
       name: 'Avadi',
-      sub: 'Chennai',
-      address: 'Avadi Gandhi Nagar, CTH Road, Avadi - 600054',
+      city: 'Chennai',
+      shortAddress: '380 Nandhini Complex, CTH Road, Avadi',
       phone: '+919363639955',
-      image: 'https://images.unsplash.com/photo-1774571953839-5e0f6f7f28bf?auto=format&fit=crop&w=600&q=80',
-      mapUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Avadi'
+      directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Avadi',
     },
     {
       id: 'kumbakonam',
       name: 'Kumbakonam',
-      sub: '',
-      address: 'Near Bus Stand, Kumbakonam - 612001',
+      city: 'Thanjavur',
+      shortAddress: 'Near Central Bus Stand, John Selvaraj Nagar',
       phone: '+919363639955',
-      image: 'https://images.unsplash.com/photo-1771775735322-2abfea815153?auto=format&fit=crop&w=600&q=80',
-      mapUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Kumbakonam'
+      directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Kumbakonam',
     },
     {
       id: 'nagapattinam',
       name: 'Nagapattinam',
-      sub: '',
-      address: 'Velipalayam, Nagapattinam - 611001',
+      city: 'Nagapattinam',
+      shortAddress: '400/7 Velipalayam, Opp. NT School',
       phone: '+919363639955',
-      image: 'https://images.unsplash.com/photo-1595245761073-0eb3ca3f179c?auto=format&fit=crop&w=600&q=80',
-      mapUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Nagapattinam'
+      directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Nagapattinam',
     },
     {
       id: 'pattukkottai',
       name: 'Pattukkottai',
-      sub: '',
-      address: 'Main Road, Pattukkottai - 614601',
+      city: 'Thanjavur',
+      shortAddress: '115 Tgalayari Street, Manickam Colony',
       phone: '+919363639955',
-      image: 'https://images.unsplash.com/photo-1535401991746-da3d9055713e?auto=format&fit=crop&w=600&q=80',
-      mapUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Pattukkottai'
-    }
+      directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Pattukkottai',
+    },
   ];
 
   return (
-    <section id="branches" className="py-10 sm:py-14 bg-[#FAF7F0] border-b border-zinc-200/60">
+    <section id="branches" className="py-12 sm:py-16 lg:py-20 bg-[#F8F3E8] border-b border-[#C9A227]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header matching Luxury Design */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
-          <div>
-            <span className="text-[11px] font-bold text-[#A77B28] uppercase tracking-widest block mb-1">
-              Physical Showroom Network
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#140E0A]">
-              Our Luxury Showrooms
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-500 mt-1 max-w-xl">
-              Visit your nearest Athishta Gold Company branch for a private, certified gold valuation with immediate bank settlement.
-            </p>
-          </div>
-
-          <a
-            href="https://maps.google.com/?q=Athishta+Gold+Company"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#A77B28] hover:text-[#8F671E] transition-colors group cursor-pointer shrink-0"
-          >
-            <span>View All Showrooms</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+        {/* Section Heading */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#171717]">
+            Find a Branch Near You
+          </h2>
+          <p className="text-sm sm:text-base text-[#6F6A60] mt-2">
+            Visit our nearest branch for certified gold evaluation and instant settlement.
+          </p>
         </div>
 
-        {/* 6 Branch Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        {/* 3 Columns Desktop | 2 Columns Tablet | 1 Column Mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {branches.map((b) => (
             <div
               key={b.id}
-              className="bg-white rounded-2xl border border-[#C89B3C]/25 overflow-hidden shadow-xs hover:shadow-xl hover:border-[#C89B3C]/60 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+              className="bg-[#FFFDF8] rounded-2xl border border-[#C9A227]/25 overflow-hidden shadow-xs hover:border-[#C9A227]/60 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
             >
-              {/* Storefront Photo */}
-              <div className="relative h-40 bg-[#140E0A] overflow-hidden flex flex-col">
+              {/* Clean Image Area with 'Branch Photo Coming Soon' Fallback */}
+              <div className="relative h-48 sm:h-52 bg-gradient-to-br from-[#1C1814] via-[#15110D] to-[#120D0A] flex flex-col items-center justify-center p-6 text-center overflow-hidden">
                 
-                {/* Storefront Fascia Signboard */}
-                <div className="relative z-10 bg-[#140E0A] border-b border-[#C89B3C]/60 px-2.5 py-1.5 shadow-md flex items-center justify-center gap-1.5">
-                  <div className="w-3.5 h-3.5 rounded-full bg-[#C8102E] border border-[#F6D155] flex items-center justify-center shrink-0">
-                    <span className="text-[6px] text-[#F6D155] font-bold">A</span>
-                  </div>
-                  <span className="font-serif font-bold text-[9px] text-[#F3C34F] tracking-widest uppercase truncate">
-                    Athishta Gold Company
+                {/* Subtle decorative background glow */}
+                <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#C9A227_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+                
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-[#C9A227]/30 flex items-center justify-center text-[#C9A227] mb-3 relative z-10 shadow-inner group-hover:scale-105 transition-transform">
+                  <Building2 className="w-7 h-7 stroke-[1.5]" />
+                </div>
+
+                <div className="relative z-10">
+                  <span className="font-serif font-bold text-lg text-white tracking-wide block">
+                    {b.name}
+                  </span>
+                  <span className="inline-block mt-2 px-3 py-1 rounded-full text-[11px] font-semibold text-[#C9A227] bg-[#C9A227]/10 border border-[#C9A227]/30 tracking-wide">
+                    Branch Photo Coming Soon
                   </span>
                 </div>
 
-                {/* Showroom Facade / Glass Entrance View */}
-                <div className="relative flex-1 overflow-hidden">
-                  <img
-                    src={b.image}
-                    alt={`${b.name} Showroom - Athishta Gold Company`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Branch Pill Badge */}
-                  <div className="absolute bottom-2 left-2 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded-md border border-white/20">
-                    <span className="text-[9px] font-bold text-[#F3C34F] uppercase tracking-wider">{b.name}</span>
+                {b.isHeadOffice && (
+                  <div className="absolute top-3 left-3 bg-[#C9A227] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-xs">
+                    Head Office
                   </div>
-                </div>
-
+                )}
               </div>
 
-              {/* Branch Info */}
-              <div className="p-3.5 flex-1 flex flex-col justify-between">
+              {/* Branch Content */}
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif font-bold text-xs sm:text-sm text-[#140E0A] leading-tight mb-0.5">
-                    {b.name} {b.sub && <span className="font-normal text-zinc-500 block text-[11px]">{b.sub}</span>}
-                  </h3>
-                  <p className="text-[10px] sm:text-[11px] text-zinc-500 line-clamp-2 leading-snug mt-1">
-                    {b.address}
+                  <div className="flex items-baseline justify-between mb-1">
+                    <h3 className="font-serif font-bold text-lg text-[#171717]">
+                      {b.name}
+                    </h3>
+                    <span className="text-xs font-semibold text-[#C9A227]">
+                      {b.city}
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#6F6A60] leading-relaxed flex items-start gap-1.5 mt-2">
+                    <MapPin className="w-3.5 h-3.5 text-[#C9A227] shrink-0 mt-0.5" />
+                    <span>{b.shortAddress}</span>
                   </p>
                 </div>
 
-                {/* Actions: Call & Directions buttons */}
-                <div className="grid grid-cols-2 gap-1.5 mt-3 pt-2.5 border-t border-zinc-100">
+                {/* Buttons: Directions & Call */}
+                <div className="grid grid-cols-2 gap-2.5 mt-6 pt-4 border-t border-[#C9A227]/15">
                   <a
                     href={`tel:${b.phone}`}
-                    className="py-1.5 px-2 rounded-lg text-[10px] font-bold text-white bg-gradient-to-r from-[#A77B28] to-[#C89B3C] hover:brightness-105 flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
+                    className="py-2.5 px-3 rounded-xl text-xs font-bold text-[#15110D] bg-[#F8F3E8] hover:bg-[#ebd9a8]/40 border border-[#C9A227]/40 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                   >
-                    <Phone className="w-3 h-3" />
-                    <span>Call Now</span>
+                    <Phone className="w-3.5 h-3.5 text-[#C9A227]" />
+                    <span>Call</span>
                   </a>
 
                   <a
-                    href={b.mapUrl}
+                    href={b.directionsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="py-1.5 px-2 rounded-lg text-[10px] font-bold text-[#140E0A] bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                    className="py-2.5 px-3 rounded-xl text-xs font-bold text-white bg-[#C9A227] hover:bg-[#b8911e] flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                   >
-                    <Navigation className="w-3 h-3 text-[#A77B28]" />
+                    <Navigation className="w-3.5 h-3.5" />
                     <span>Directions</span>
                   </a>
                 </div>
+
               </div>
 
             </div>
@@ -178,3 +160,4 @@ export const BranchLocator: React.FC = () => {
     </section>
   );
 };
+

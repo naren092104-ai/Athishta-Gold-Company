@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
+import { TopAnnouncementBar } from '../components/TopAnnouncementBar';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
-import { GoldDashboard } from '../components/GoldDashboard';
+import { TrustBar } from '../components/TrustBar';
+import { GoldRateSection } from '../components/GoldRateSection';
+import { GoldCalculatorSection } from '../components/GoldCalculatorSection';
 import { Services } from '../components/Services';
+import { HowItWorks } from '../components/HowItWorks';
+import { WhyAthishta } from '../components/WhyAthishta';
 import { BranchLocator } from '../components/BranchLocator';
 import { Testimonials } from '../components/Testimonials';
 import { CtaBanner } from '../components/CtaBanner';
 import { Footer } from '../components/Footer';
-import { WhatsAppButton } from '../components/WhatsAppButton';
+import { MobileBottomBar } from '../components/MobileBottomBar';
 import { QuoteModal } from '../components/QuoteModal';
 import { ConfirmationModal, ConfirmationDetails } from '../components/ConfirmationModal';
 import { useGoldRate } from '../hooks/useGoldRate';
 
 export const Home: React.FC = () => {
-  const { data: rateData, isRefreshing, refreshRate, rates, status } = useGoldRate();
+  const { data: rateData, isRefreshing, refreshRate, rates } = useGoldRate();
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [selectedQuoteService, setSelectedQuoteService] = useState<string>('Gold Valuation & Quote');
+  const [selectedQuoteService, setSelectedQuoteService] = useState<string>('Instant Gold Quote');
   const [confirmationDetails, setConfirmationDetails] = useState<ConfirmationDetails | null>(null);
 
   const handleOpenQuoteModal = (serviceName?: string) => {
-    setSelectedQuoteService(serviceName || 'Gold Valuation & Quote');
+    setSelectedQuoteService(serviceName || 'Instant Gold Quote');
     setIsQuoteModalOpen(true);
   };
 
@@ -35,53 +40,64 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F0] text-[#140E0A] font-sans selection:bg-[#E8D49E] selection:text-[#120D08]">
+    <div className="min-h-screen bg-[#F8F3E8] text-[#171717] font-sans selection:bg-[#C9A227]/20 selection:text-[#171717] pb-16 sm:pb-0">
       
-      {/* 1. Top Bar & Navigation Bar (Matches uploaded image exactly) */}
+      {/* 0. Top Announcement Bar */}
+      <TopAnnouncementBar />
+
+      {/* 1. Header / Sticky Navbar */}
       <Navbar
         onOpenQuoteModal={handleOpenQuoteModal}
         onNavigateSection={handleScrollToSection}
       />
 
       <main>
-        {/* 2. Hero Section: "Your Gold Deserves Its True Value" + Woman admiring Gold Ornaments */}
+        {/* 2. Hero Section: Cinematic composition + floating live rate card */}
         <Hero
           rates={rates}
-          rateStatus={status}
+          rateData={rateData}
           onOpenQuoteModal={handleOpenQuoteModal}
           onScrollToSection={handleScrollToSection}
         />
 
-        {/* 3. Gold Dashboard: Row 1 (Live Rate + Calculator) & Row 2 (Price Trend + Value Change) */}
-        <GoldDashboard
+        {/* 3. Trust Bar: Exactly 4 icon items */}
+        <TrustBar />
+
+        {/* 4. Gold Rate: 24K, 22K, 18K live cards */}
+        <GoldRateSection
           rates={rates}
           rateData={rateData}
           isRefreshing={isRefreshing}
           onRefresh={refreshRate}
-          onQuoteConfirmed={handleShowConfirmation}
         />
 
-        {/* 4. Our Services: 6 Round Icon Cards */}
+        {/* 5. Our Services: Exactly 5 services */}
         <Services onOpenQuoteModal={handleOpenQuoteModal} />
 
-        {/* 5. Our Branches: 6 Storefront Branch Cards with Call & Directions */}
+        {/* 7. How It Works: 4-Step horizontal timeline */}
+        <HowItWorks />
+
+        {/* 8. Why Athishta: Split layout with 4 bullets */}
+        <WhyAthishta />
+
+        {/* 9. Branches: 3-col desktop / 2-col tablet / 1-col mobile */}
         <BranchLocator />
 
-        {/* 6. What Our Customers Say: Testimonials with 5 Stars & Carousel Arrows */}
+        {/* 10. Testimonials: 3 real customer reviews */}
         <Testimonials />
 
-        {/* 7. Turn Your Gold into Opportunities: CTA Banner with WhatsApp & Call Buttons */}
-        <CtaBanner onOpenQuoteModal={() => handleOpenQuoteModal('Gold Valuation')} />
+        {/* 11. Final CTA: Dark luxury section */}
+        <CtaBanner onOpenQuoteModal={() => handleOpenQuoteModal('Instant Gold Quote')} />
+
+        {/* 12. Final gold quote journey, immediately before the footer */}
+        <GoldCalculatorSection rates={rates} rateData={rateData} />
       </main>
 
-      {/* 8. 4-Column Footer with Golden Lotus Logo & Google Maps preview */}
-      <Footer
-        onNavigateSection={handleScrollToSection}
-        onOpenQuoteModal={handleOpenQuoteModal}
-      />
+      {/* 12. Simple Footer */}
+      <Footer onNavigateSection={handleScrollToSection} />
 
-      {/* Floating WhatsApp Action Button */}
-      <WhatsAppButton />
+      {/* 13. Mobile Bottom Sticky Bar */}
+      <MobileBottomBar onOpenQuoteModal={() => handleOpenQuoteModal('Instant Gold Quote')} />
 
       {/* Universal Quote Modal */}
       <QuoteModal
@@ -92,7 +108,7 @@ export const Home: React.FC = () => {
         onQuoteConfirmed={handleShowConfirmation}
       />
 
-      {/* Instant Action Confirmation Receipt Modal */}
+      {/* Confirmation Receipt Modal */}
       <ConfirmationModal
         details={confirmationDetails}
         onClose={() => setConfirmationDetails(null)}
@@ -101,3 +117,4 @@ export const Home: React.FC = () => {
     </div>
   );
 };
+
