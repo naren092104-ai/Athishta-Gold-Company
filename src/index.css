@@ -74,3 +74,38 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #C89B3C;
 }
+
+/* Luxury Gold & Obsidian Utilities */
+.luxury-gold-gradient {
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+}
+
+.luxury-gold-text {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5D77F 40%, #AA7C11 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-gold-border {
+  border-color: rgba(212, 175, 55, 0.28);
+}
+
+.luxury-gold-border-hover:hover {
+  border-color: rgba(212, 175, 55, 0.65);
+  box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15);
+}
+
+.luxury-glass-dark {
+  background: rgba(18, 13, 9, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.luxury-glass-light {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(200, 155, 60, 0.2);
+}
+

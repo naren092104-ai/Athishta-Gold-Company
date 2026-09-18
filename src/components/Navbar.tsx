@@ -75,17 +75,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-      {/* 1. Top Bar matching Image exactly */}
-      <div className="bg-white border-b border-zinc-100 py-1.5 px-4 sm:px-6 lg:px-8 text-[11px] sm:text-xs text-zinc-500">
+      {/* 1. Top Bar with Luxury Credentials & Live Ticker */}
+      <div className="bg-[#140E0A] text-white/90 border-b border-[#A77B28]/30 py-1.5 px-4 sm:px-6 lg:px-8 text-[11px] sm:text-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="hidden md:flex items-center gap-2.5 text-zinc-500 font-medium">
-            <span>Gold Buyers</span>
-            <span className="text-zinc-300">|</span>
-            <span>Purity Testing</span>
-            <span className="text-zinc-300">|</span>
-            <span>Instant Payment</span>
-            <span className="text-zinc-300">|</span>
-            <span>Multiple Branches</span>
+          <div className="hidden md:flex items-center gap-2.5 text-[#E5B54F] font-medium tracking-wide">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E5B54F] animate-pulse" />
+              916 BIS Hallmarked Standards
+            </span>
+            <span className="text-zinc-600">•</span>
+            <span>German XRF Laser Testing</span>
+            <span className="text-zinc-600">•</span>
+            <span>Instant IMPS & Cash Payout</span>
+            <span className="text-zinc-600">•</span>
+            <span>6 Premium Showrooms</span>
           </div>
 
           <div className="flex items-center justify-between w-full md:w-auto gap-4">
@@ -95,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-5 h-5 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:opacity-85 transition-opacity"
+                className="w-5 h-5 rounded-full bg-white/10 hover:bg-[#1877F2] text-white flex items-center justify-center transition-colors"
                 title="Facebook"
               >
                 <Facebook className="w-3 h-3 fill-current" />
@@ -104,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-5 h-5 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-600 to-purple-600 text-white flex items-center justify-center hover:opacity-85 transition-opacity"
+                className="w-5 h-5 rounded-full bg-white/10 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-600 hover:to-purple-600 text-white flex items-center justify-center transition-colors"
                 title="Instagram"
               >
                 <Instagram className="w-3 h-3" />
@@ -113,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 href="https://youtube.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-5 h-5 rounded-full bg-red-600 text-white flex items-center justify-center hover:opacity-85 transition-opacity"
+                className="w-5 h-5 rounded-full bg-white/10 hover:bg-red-600 text-white flex items-center justify-center transition-colors"
                 title="YouTube"
               >
                 <Youtube className="w-3 h-3" />
@@ -123,9 +126,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Direct Phone Number */}
             <a
               href={`tel:${COMPANY_PHONE.replace(/\s+/g, '')}`}
-              className="flex items-center gap-1.5 font-bold text-[#140E0A] hover:text-[#A77B28] transition-colors"
+              className="flex items-center gap-1.5 font-bold text-white hover:text-[#E5B54F] transition-colors"
             >
-              <Phone className="w-3.5 h-3.5 text-[#140E0A]" />
+              <Phone className="w-3.5 h-3.5 text-[#E5B54F]" />
               <span>{COMPANY_PHONE}</span>
             </a>
           </div>
@@ -134,13 +137,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* 2. Main Navigation Bar */}
       <header
-        className={`sticky top-0 z-40 bg-white transition-all duration-300 ${
-          isScrolled ? 'shadow-md py-2.5' : 'py-3.5 border-b border-zinc-100'
+        className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all duration-300 ${
+          isScrolled ? 'shadow-md py-2.5 border-b border-[#A77B28]/20' : 'py-3.5 border-b border-zinc-100'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Logo Branding: Red Circle Emblem matching official brand identity */}
+          {/* Logo Branding: Red Circle Emblem */}
           <button
             onClick={() => handleNavClick('home')}
             className="cursor-pointer text-left focus:outline-none"
@@ -158,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => handleNavClick(item.id)}
                   className={`px-3 py-1.5 text-xs xl:text-[13px] font-semibold rounded-lg transition-all cursor-pointer whitespace-nowrap ${
                     isActive
-                      ? 'bg-[#EBDCB9]/70 text-[#140E0A] font-bold'
+                      ? 'bg-[#A77B28]/15 text-[#8F671E] font-bold border border-[#A77B28]/30'
                       : 'text-[#2B231B] hover:text-[#A77B28] hover:bg-zinc-50'
                   }`}
                 >
@@ -174,7 +177,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href={whatsappDirectUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-[#A77B28] hover:bg-[#8F671E] rounded-xl transition-all shadow-sm active:scale-95 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-gradient-to-r from-[#A77B28] via-[#C29235] to-[#A77B28] hover:shadow-lg hover:shadow-[#A77B28]/20 rounded-xl transition-all active:scale-95 cursor-pointer border border-[#F6D155]/40"
             >
               <MessageCircle className="w-4 h-4 fill-current" />
               <span>Get Quote on WhatsApp</span>

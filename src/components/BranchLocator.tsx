@@ -74,44 +74,47 @@ export const BranchLocator: React.FC = () => {
     <section id="branches" className="py-10 sm:py-14 bg-[#FAF7F0] border-b border-zinc-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header matching Image */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-6">
-          <div className="flex flex-wrap items-baseline gap-2">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#140E0A]">
-              Our Branches
-            </h2>
-            <span className="text-xs sm:text-sm text-zinc-500">
-              Find your nearest Athishta Gold Company branch.
+        {/* Section Header matching Luxury Design */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+          <div>
+            <span className="text-[11px] font-bold text-[#A77B28] uppercase tracking-widest block mb-1">
+              Physical Showroom Network
             </span>
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#140E0A]">
+              Our Luxury Showrooms
+            </h2>
+            <p className="text-xs sm:text-sm text-zinc-500 mt-1 max-w-xl">
+              Visit your nearest Athishta Gold Company branch for a private, certified gold valuation with immediate bank settlement.
+            </p>
           </div>
 
           <a
             href="https://maps.google.com/?q=Athishta+Gold+Company"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#A77B28] hover:text-[#8F671E] transition-colors group cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#A77B28] hover:text-[#8F671E] transition-colors group cursor-pointer shrink-0"
           >
-            <span>View All Branches</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            <span>View All Showrooms</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
 
-        {/* 6 Branch Cards Grid matching Image */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
+        {/* 6 Branch Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {branches.map((b) => (
             <div
               key={b.id}
-              className="bg-white rounded-xl border border-zinc-200/80 overflow-hidden shadow-2xs hover:shadow-md transition-all flex flex-col justify-between group"
+              className="bg-white rounded-2xl border border-[#C89B3C]/25 overflow-hidden shadow-xs hover:shadow-xl hover:border-[#C89B3C]/60 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
             >
-              {/* Storefront Photo matching user reference image */}
-              <div className="relative h-36 bg-[#160E08] overflow-hidden flex flex-col">
+              {/* Storefront Photo */}
+              <div className="relative h-40 bg-[#140E0A] overflow-hidden flex flex-col">
                 
-                {/* Physical Storefront Fascia Signboard matching user image */}
-                <div className="relative z-10 bg-[#160E08]/95 border-b-2 border-[#C89B3C] px-2 py-1.5 shadow-md flex items-center justify-center gap-1.5">
+                {/* Storefront Fascia Signboard */}
+                <div className="relative z-10 bg-[#140E0A] border-b border-[#C89B3C]/60 px-2.5 py-1.5 shadow-md flex items-center justify-center gap-1.5">
                   <div className="w-3.5 h-3.5 rounded-full bg-[#C8102E] border border-[#F6D155] flex items-center justify-center shrink-0">
                     <span className="text-[6px] text-[#F6D155] font-bold">A</span>
                   </div>
-                  <span className="font-serif font-bold text-[9px] text-[#F3C34F] tracking-wider uppercase truncate">
+                  <span className="font-serif font-bold text-[9px] text-[#F3C34F] tracking-widest uppercase truncate">
                     Athishta Gold Company
                   </span>
                 </div>
@@ -120,44 +123,48 @@ export const BranchLocator: React.FC = () => {
                 <div className="relative flex-1 overflow-hidden">
                   <img
                     src={b.image}
-                    alt={`${b.name} Branch Storefront - Athishta Gold Company`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    alt={`${b.name} Showroom - Athishta Gold Company`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     loading="lazy"
                   />
-                  {/* Subtle glass reflection & warm lighting gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Branch Pill Badge */}
+                  <div className="absolute bottom-2 left-2 bg-black/75 backdrop-blur-xs px-2 py-0.5 rounded-md border border-white/20">
+                    <span className="text-[9px] font-bold text-[#F3C34F] uppercase tracking-wider">{b.name}</span>
+                  </div>
                 </div>
 
               </div>
 
-              {/* Branch Info matching Image */}
-              <div className="p-3 flex-1 flex flex-col justify-between">
+              {/* Branch Info */}
+              <div className="p-3.5 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-serif font-bold text-xs sm:text-sm text-[#140E0A] leading-tight mb-0.5">
                     {b.name} {b.sub && <span className="font-normal text-zinc-500 block text-[11px]">{b.sub}</span>}
                   </h3>
-                  <p className="text-[10px] sm:text-[11px] text-zinc-500 line-clamp-2 leading-tight mt-1">
+                  <p className="text-[10px] sm:text-[11px] text-zinc-500 line-clamp-2 leading-snug mt-1">
                     {b.address}
                   </p>
                 </div>
 
-                {/* Actions: Call & Directions buttons matching Image */}
-                <div className="grid grid-cols-2 gap-1.5 mt-3 pt-2 border-t border-zinc-100">
+                {/* Actions: Call & Directions buttons */}
+                <div className="grid grid-cols-2 gap-1.5 mt-3 pt-2.5 border-t border-zinc-100">
                   <a
                     href={`tel:${b.phone}`}
-                    className="py-1 px-2 rounded text-[10px] font-bold text-white bg-[#A77B28] hover:bg-[#8F671E] flex items-center justify-center gap-1 transition-colors"
+                    className="py-1.5 px-2 rounded-lg text-[10px] font-bold text-white bg-gradient-to-r from-[#A77B28] to-[#C89B3C] hover:brightness-105 flex items-center justify-center gap-1 transition-all shadow-2xs cursor-pointer"
                   >
-                    <Phone className="w-2.5 h-2.5" />
-                    <span>Call</span>
+                    <Phone className="w-3 h-3" />
+                    <span>Call Now</span>
                   </a>
 
                   <a
                     href={b.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="py-1 px-2 rounded text-[10px] font-bold text-[#140E0A] bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 flex items-center justify-center gap-1 transition-colors"
+                    className="py-1.5 px-2 rounded-lg text-[10px] font-bold text-[#140E0A] bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 flex items-center justify-center gap-1 transition-colors cursor-pointer"
                   >
-                    <Navigation className="w-2.5 h-2.5 text-[#A77B28]" />
+                    <Navigation className="w-3 h-3 text-[#A77B28]" />
                     <span>Directions</span>
                   </a>
                 </div>

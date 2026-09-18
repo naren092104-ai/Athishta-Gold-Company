@@ -236,87 +236,87 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
   };
 
   return (
-    <section id="gold-rate" className="py-8 sm:py-10 bg-[#FAF7F0]">
+    <section id="gold-rate" className="py-10 sm:py-14 bg-[#FAF7F2] border-b border-[#C89B3C]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* ROW 1: LIVE GOLD RATE (LEFT) + CALCULATE YOUR GOLD VALUE (RIGHT) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Left Card: Today's Gold Rate (Live) (7 cols) */}
-          <div className="lg:col-span-7 bg-white rounded-2xl border border-zinc-200/80 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-[#C89B3C]/25 p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-[#C89B3C]/45 transition-all">
             <div>
               {/* Header matching user image */}
               <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-zinc-100">
-                <div className="flex items-center gap-2">
-                  <h2 className="font-serif font-bold text-base sm:text-lg text-[#140E0A]">
-                    Today's Gold Rate (Live)
+                <div className="flex items-center gap-2.5">
+                  <h2 className="font-serif font-bold text-lg sm:text-xl text-[#140E0A]">
+                    Today's Live Gold Rate
                   </h2>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold border border-emerald-200 shadow-2xs">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Live Market Rate
+                    Live Bullion Feed
                   </span>
                 </div>
 
                 <div className="flex items-center gap-3 text-xs text-zinc-500">
-                  <span className="text-[11px]">Updated at: {formattedUpdatedAt}</span>
+                  <span className="text-[11px] font-medium">Updated: {formattedUpdatedAt}</span>
                   <button
                     onClick={onRefresh}
                     disabled={isRefreshing}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-zinc-50 hover:bg-zinc-100 text-zinc-800 text-xs font-semibold border border-zinc-200 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-zinc-50 hover:bg-[#FAF5EC] text-zinc-800 text-xs font-semibold border border-zinc-200 hover:border-[#C89B3C]/40 transition-colors cursor-pointer"
                   >
-                    <RefreshCw className={`w-3 h-3 text-zinc-600 ${isRefreshing ? 'animate-spin' : ''}`} />
+                    <RefreshCw className={`w-3.5 h-3.5 text-[#A77B28] ${isRefreshing ? 'animate-spin' : ''}`} />
                     <span>Refresh</span>
                   </button>
                 </div>
               </div>
 
-              {/* 3 Gold Karat Cards Grid matching Image */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+              {/* 3 Gold Karat Cards Grid with Luxury Accents */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 my-5">
                 
                 {/* 24K Bar */}
-                <div className="bg-[#FFFDF9] border border-zinc-200 rounded-xl p-3.5 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#FAF4EA] flex items-center justify-center text-xl shrink-0">
+                <div className="bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EC] border border-[#C89B3C]/35 hover:border-[#C89B3C]/70 rounded-2xl p-4 flex items-center gap-3.5 transition-all shadow-2xs hover:shadow-md group">
+                  <div className="w-11 h-11 rounded-xl bg-white border border-[#C89B3C]/30 flex items-center justify-center text-2xl shrink-0 group-hover:scale-105 transition-transform shadow-xs">
                     🪙
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-[#140E0A]">24K (999)</div>
+                    <div className="text-xs font-bold text-[#8F671E] uppercase tracking-wide">24K Pure (999)</div>
                     <div className="text-base sm:text-lg font-bold text-[#140E0A] leading-tight">
                       ₹ {current24K.toLocaleString('en-IN')} <span className="text-[10px] font-normal text-zinc-500">/ gram</span>
                     </div>
-                    <div className={`text-[10px] font-bold ${change24h.direction === 'down' ? 'text-rose-600' : 'text-emerald-600'}`}>
-                      {change24h.direction === 'down' ? '▼' : '▲'} {change24h.direction === 'down' ? '-' : '+'}{change24h.percentage}%
+                    <div className={`text-[11px] font-bold mt-0.5 ${change24h.direction === 'down' ? 'text-rose-600' : 'text-emerald-600'}`}>
+                      {change24h.direction === 'down' ? '▼' : '▲'} {change24h.direction === 'down' ? '-' : '+'}{change24h.percentage}% (24h)
                     </div>
                   </div>
                 </div>
 
                 {/* 22K Bar */}
-                <div className="bg-[#FFFDF9] border border-zinc-200 rounded-xl p-3.5 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#FAF4EA] flex items-center justify-center text-xl shrink-0">
+                <div className="bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EC] border border-[#C89B3C]/35 hover:border-[#C89B3C]/70 rounded-2xl p-4 flex items-center gap-3.5 transition-all shadow-2xs hover:shadow-md group">
+                  <div className="w-11 h-11 rounded-xl bg-white border border-[#C89B3C]/30 flex items-center justify-center text-2xl shrink-0 group-hover:scale-105 transition-transform shadow-xs">
                     🥇
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-[#140E0A]">22K (916)</div>
+                    <div className="text-xs font-bold text-[#8F671E] uppercase tracking-wide">22K Hallmark (916)</div>
                     <div className="text-base sm:text-lg font-bold text-[#140E0A] leading-tight">
                       ₹ {current22K.toLocaleString('en-IN')} <span className="text-[10px] font-normal text-zinc-500">/ gram</span>
                     </div>
-                    <div className={`text-[10px] font-bold ${change24h.direction === 'down' ? 'text-rose-600' : 'text-emerald-600'}`}>
-                      {change24h.direction === 'down' ? '▼' : '▲'} {change24h.direction === 'down' ? '-' : '+'}{change24h.percentage}%
+                    <div className={`text-[11px] font-bold mt-0.5 ${change24h.direction === 'down' ? 'text-rose-600' : 'text-emerald-600'}`}>
+                      {change24h.direction === 'down' ? '▼' : '▲'} {change24h.direction === 'down' ? '-' : '+'}{change24h.percentage}% (24h)
                     </div>
                   </div>
                 </div>
 
                 {/* 18K Bar */}
-                <div className="bg-[#FFFDF9] border border-zinc-200 rounded-xl p-3.5 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-[#FAF4EA] flex items-center justify-center text-xl shrink-0">
+                <div className="bg-gradient-to-b from-[#FFFDF9] to-[#FAF5EC] border border-[#C89B3C]/35 hover:border-[#C89B3C]/70 rounded-2xl p-4 flex items-center gap-3.5 transition-all shadow-2xs hover:shadow-md group">
+                  <div className="w-11 h-11 rounded-xl bg-white border border-[#C89B3C]/30 flex items-center justify-center text-2xl shrink-0 group-hover:scale-105 transition-transform shadow-xs">
                     ✨
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-[#140E0A]">18K (750)</div>
+                    <div className="text-xs font-bold text-[#8F671E] uppercase tracking-wide">18K Standard (750)</div>
                     <div className="text-base sm:text-lg font-bold text-[#140E0A] leading-tight">
                       ₹ {current18K.toLocaleString('en-IN')} <span className="text-[10px] font-normal text-zinc-500">/ gram</span>
                     </div>
-                    <div className={`text-[10px] font-bold ${change24h.direction === 'down' ? 'text-rose-600' : 'text-emerald-600'}`}>
-                      {change24h.direction === 'down' ? '▼' : '▲'} {change24h.direction === 'down' ? '-' : '+'}{change24h.percentage}%
+                    <div className={`text-[11px] font-bold mt-0.5 ${change24h.direction === 'down' ? 'text-rose-600' : 'text-emerald-600'}`}>
+                      {change24h.direction === 'down' ? '▼' : '▲'} {change24h.direction === 'down' ? '-' : '+'}{change24h.percentage}% (24h)
                     </div>
                   </div>
                 </div>
@@ -326,13 +326,13 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
 
             {/* Footnote */}
             <div className="text-[11px] text-zinc-400 pt-3 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-2">
-              <span>Source: {rateData?.source || 'Live Bullion Market Feed (Chennai / Tamil Nadu Benchmark)'}</span>
-              <span>Rates may vary based on market conditions.</span>
+              <span className="font-medium text-zinc-500">Source: {rateData?.source || 'Live Bullion Market Feed (Chennai / Tamil Nadu Benchmark)'}</span>
+              <span>Rates reflect live physical bullion market parity.</span>
             </div>
           </div>
 
-          {/* Right Card: Calculate Your Gold Value (5 cols) matching Image exactly */}
-          <div id="gold-calculator" className="lg:col-span-5 bg-white rounded-2xl border border-zinc-200/80 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+          {/* Right Card: Calculate Your Gold Value (5 cols) */}
+          <div id="gold-calculator" className="lg:col-span-5 bg-white rounded-3xl border border-[#C89B3C]/25 p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-[#C89B3C]/45 transition-all">
             <div>
               {/* Header */}
               <div className="flex items-center gap-2.5 pb-3 border-b border-zinc-100">
@@ -421,29 +421,34 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Left Card: Gold Price Trend (7 cols) */}
-          <div className="lg:col-span-7 bg-white rounded-2xl border border-zinc-200/80 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-[#C89B3C]/25 p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-[#C89B3C]/45 transition-all">
             <div>
               {/* Header with Range Filters */}
               <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-100">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#A77B28]/15 text-[#A77B28] flex items-center justify-center font-bold">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#A77B28] to-[#C89B3C] text-white flex items-center justify-center font-bold shadow-2xs">
                     <TrendingUp className="w-4 h-4" />
                   </div>
-                  <h3 className="font-serif font-bold text-base text-[#140E0A]">
-                    Gold Price Trend
-                  </h3>
+                  <div>
+                    <h3 className="font-serif font-bold text-base sm:text-lg text-[#140E0A]">
+                      Gold Price Trend & History
+                    </h3>
+                    <p className="text-[11px] text-zinc-500">
+                      Physical bullion benchmark progression
+                    </p>
+                  </div>
                 </div>
 
                 {/* Filter Pills */}
-                <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-lg">
+                <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-xl">
                   {(['7D', '30D', '6M', '1Y', '3Y', '5Y'] as const).map((r) => (
                     <button
                       key={r}
                       type="button"
                       onClick={() => setTrendRange(r)}
-                      className={`px-2 py-0.5 rounded text-[11px] font-semibold transition-all cursor-pointer ${
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
                         trendRange === r
-                          ? 'bg-[#A77B28] text-white'
+                          ? 'bg-gradient-to-r from-[#A77B28] to-[#C89B3C] text-white shadow-2xs'
                           : 'text-zinc-600 hover:text-zinc-900'
                       }`}
                     >
@@ -472,14 +477,14 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
                   <path
                     d={areaPath}
                     fill="url(#goldGradientArea)"
-                    opacity="0.25"
+                    opacity="0.3"
                   />
 
                   {/* Smooth Gold Line */}
                   <path
                     d={svgPath}
                     fill="none"
-                    stroke="#A77B28"
+                    stroke="#C89B3C"
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -521,11 +526,11 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
                 </svg>
 
                 {/* Floating Tooltip Bubble over latest point */}
-                <div className="absolute top-2 right-4 bg-white border border-[#A77B28]/30 shadow-xs rounded-lg px-2.5 py-1 text-center pointer-events-none">
-                  <div className="text-[9px] text-zinc-500 font-medium">
+                <div className="absolute top-2 right-4 bg-white/95 backdrop-blur-xs border border-[#A77B28]/40 shadow-md rounded-xl px-3 py-1.5 text-center pointer-events-none">
+                  <div className="text-[10px] text-zinc-500 font-medium">
                     {activePoints[activePoints.length - 1]?.label || 'Today'}
                   </div>
-                  <div className="text-xs font-bold text-[#140E0A]">
+                  <div className="text-xs sm:text-sm font-bold text-[#8F671E]">
                     ₹ {activePoints[activePoints.length - 1]?.price.toLocaleString('en-IN')} / g
                   </div>
                 </div>
@@ -533,12 +538,12 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
             </div>
           </div>
 
-          {/* Right Card: See How Your Gold Value Has Changed (5 cols) matching Image */}
-          <div className="lg:col-span-5 bg-white rounded-2xl border border-zinc-200/80 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+          {/* Right Card: See How Your Gold Value Has Changed (5 cols) */}
+          <div className="lg:col-span-5 bg-white rounded-3xl border border-[#C89B3C]/25 p-6 sm:p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-[#C89B3C]/45 transition-all">
             <div>
               {/* Header */}
-              <div className="flex items-center gap-2 pb-3 border-b border-zinc-100">
-                <div className="w-7 h-7 rounded-lg bg-[#A77B28]/15 text-[#A77B28] flex items-center justify-center font-bold">
+              <div className="flex items-center gap-2.5 pb-3 border-b border-zinc-100">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#A77B28] to-[#C89B3C] text-white flex items-center justify-center font-bold shadow-2xs">
                   <BarChart3 className="w-4 h-4" />
                 </div>
                 <div>
@@ -546,7 +551,7 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
                     See How Your Gold Value Has Changed
                   </h3>
                   <p className="text-[11px] text-zinc-500">
-                    Enter your purchase year to see the price change.
+                    Select your purchase year to see capital appreciation.
                   </p>
                 </div>
               </div>
@@ -591,7 +596,7 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
 
                 <div className="col-span-3">
                   <label className="block text-[10px] font-semibold text-zinc-600 mb-1">
-                    Weight (grams)
+                    Weight (g)
                   </label>
                   <input
                     type="number"
@@ -611,7 +616,7 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
                     type="button"
                     id="view-change-calc-btn"
                     onClick={handleViewChangeClick}
-                    className="w-full py-1.5 rounded-lg text-xs font-bold text-white bg-[#A77B28] hover:bg-[#8F671E] transition-all cursor-pointer shadow-2xs"
+                    className="w-full py-1.5 rounded-lg text-xs font-bold text-white bg-gradient-to-r from-[#A77B28] to-[#C89B3C] hover:brightness-105 transition-all cursor-pointer shadow-2xs"
                   >
                     View Change
                   </button>
@@ -619,9 +624,9 @@ export const GoldDashboard: React.FC<GoldDashboardProps> = ({
               </div>
 
               {/* Green Highlighted Value Change Banner matching Image */}
-              <div className="bg-[#EBF7EE] border border-emerald-300/60 rounded-xl p-3 text-center my-2">
+              <div className="bg-gradient-to-br from-[#EDF9F0] to-[#E2F4E6] border border-emerald-300/80 rounded-2xl p-4 text-center my-2 shadow-2xs">
                 <div className="text-xs text-emerald-800 font-medium">
-                  Value Change Since {purchaseYear}
+                  Capital Value Change Since {purchaseYear}
                 </div>
                 <div className="text-xl sm:text-2xl font-serif font-extrabold text-emerald-700 mt-0.5">
                   + {formatINR(netGain)} <span className="text-sm font-bold">(+{percentageGain}%)</span>
