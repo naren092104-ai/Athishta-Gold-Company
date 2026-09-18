@@ -1,0 +1,6 @@
+{
+  "name": "Athishta Gold Company",
+  "description": "Premium, trusted gold buying, selling, pawn redemption, instant live gold rates, and doorstep gold evaluation service in Tamil Nadu.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
