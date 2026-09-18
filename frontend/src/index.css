@@ -180,6 +180,13 @@
   .gold-rate-card-featured { border: 2px solid #C9971E; background: linear-gradient(145deg, rgba(255, 253, 248, 0.98), rgba(250, 242, 215, 0.96)); }
   @media (prefers-reduced-motion: reduce) { .gold-rate-card:hover { transform: none; } }
 
+  @media (max-width: 767px) {
+    #home { background-position: 72% center !important; }
+    #home .hero-readability-overlay { background: linear-gradient(90deg, rgba(255, 252, 244, 0.98) 0%, rgba(255, 252, 244, 0.94) 68%, rgba(255, 252, 244, 0.58) 100%); }
+    #home h1 { text-shadow: 0 1px 12px rgba(255, 252, 244, 0.72); }
+    #home p { text-shadow: 0 1px 8px rgba(255, 252, 244, 0.75); }
+  }
+
   /* Shared surface for the standard homepage sections. */
   #services,
   #how-it-works,

@@ -107,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({
         backgroundImage: `linear-gradient(90deg, rgba(255, 252, 244, 0.98) 0%, rgba(255, 252, 244, 0.91) 39%, rgba(255, 252, 244, 0.22) 67%, rgba(39, 20, 8, 0.28) 100%), url("${activeSlide.image}")`,
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-[#5B3213]/45 via-transparent to-transparent pointer-events-none" />
+      <div className="hero-readability-overlay absolute inset-0 bg-gradient-to-t from-[#5B3213]/45 via-transparent to-transparent pointer-events-none" />
 
       {/* Very faint temple gopuram watermark in background */}
       <div
