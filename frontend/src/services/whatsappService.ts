@@ -48,7 +48,7 @@ export function generateWhatsAppMessage(payload: WhatsAppPayload): string {
   }
 
   const lines: string[] = [
-    'Vanakkam Athishta Gold Company,',
+    'Hello Athishta Gold Company,',
     '',
     headerIntro,
     '',

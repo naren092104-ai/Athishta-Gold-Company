@@ -22,85 +22,14 @@ export const AthishtaLogo: React.FC<AthishtaLogoProps> = ({
 
     return (
       <div className="flex items-center gap-3 select-none group">
-        {/* Exact Red Circle Emblem */}
         <div
-          className={`${sizeDimensions[size]} rounded-full bg-[#C8102E] shadow-md flex items-center justify-center relative p-2 overflow-hidden shrink-0 border border-[#A00C22] transition-transform group-hover:scale-105`}
+          className={`${sizeDimensions[size]} rounded-full shadow-md flex items-center justify-center relative overflow-hidden shrink-0 transition-transform group-hover:scale-105`}
         >
-          <svg
-            viewBox="0 0 200 200"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-full"
-          >
-            {/* Background Red Circle */}
-            <circle cx="100" cy="100" r="98" fill="#C8102E" />
-
-            {/* Top Golden Crescent */}
-            <path
-              d="M75 60 C75 46 125 46 125 60 C120 54 85 54 80 60 Z"
-              fill="url(#goldGrade)"
-            />
-            <path
-              d="M75 60 C75 44 115 44 120 60 C110 50 82 50 75 60 Z"
-              fill="#F6D155"
-            />
-            <path
-              d="M80 60 C80 48 116 48 116 60"
-              stroke="url(#goldGrade)"
-              strokeWidth="7"
-              strokeLinecap="round"
-            />
-
-            {/* Bottom Golden Crescent (Interlocking) */}
-            <path
-              d="M84 76 C84 88 120 88 120 76"
-              stroke="url(#goldGrade)"
-              strokeWidth="7"
-              strokeLinecap="round"
-            />
-
-            {/* Central Golden Star Sparkle */}
-            <path
-              d="M100 60 L104 68 L112 68 L106 73 L108 81 L100 76 L92 81 L94 73 L88 68 L96 68 Z"
-              fill="url(#goldGrade)"
-            />
-
-            {/* "Athishta" in White Serif */}
-            <text
-              x="100"
-              y="132"
-              textAnchor="middle"
-              fill="#FFFFFF"
-              fontFamily="'Playfair Display', Georgia, serif"
-              fontSize="34"
-              fontWeight="600"
-              letterSpacing="0.5"
-            >
-              Athishta
-            </text>
-
-            {/* "Gold Company" in White Serif */}
-            <text
-              x="100"
-              y="156"
-              textAnchor="middle"
-              fill="#FFFFFF"
-              fontFamily="'Playfair Display', Georgia, serif"
-              fontSize="16"
-              fontWeight="400"
-              letterSpacing="0.2"
-            >
-              Gold Company
-            </text>
-
-            <defs>
-              <linearGradient id="goldGrade" x1="75" y1="44" x2="125" y2="88" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#FFE066" />
-                <stop offset="0.5" stopColor="#F5B800" />
-                <stop offset="1" stopColor="#D48806" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <img
+            src="/image.png"
+            alt="Athishta Gold Company"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/* Text next to logo for header display */}
