@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "npm --workspace frontend run build",
-    "deploy": "npx wrangler pages deploy dist --project-name athishta-gold-company --force",
+    "deploy": "npx wrangler deploy",
     "dev": "npm --workspace frontend run dev",
     "lint": "npm --workspace frontend run lint"
   }
