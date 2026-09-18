@@ -1,0 +1,13 @@
+{
+  "name": "athishta-gold-company",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm --workspace frontend run build",
+    "dev": "npm --workspace frontend run dev",
+    "lint": "npm --workspace frontend run lint"
+  }
+}
