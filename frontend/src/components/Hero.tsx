@@ -243,24 +243,6 @@ export const Hero: React.FC<HeroProps> = ({
           {/* RIGHT: Cinematic Photograph + Floating Live Gold Rate Card (Col 5) */}
           <div className="relative flex items-center justify-start lg:col-span-5 lg:justify-end">
             
-            {/* Main Image Frame */}
-            <div className="pointer-events-none absolute inset-0 hidden overflow-hidden opacity-0 lg:block">
-              <img
-                src={activeSlide.image}
-                alt={activeSlide.imageAlt}
-                className="w-full h-auto object-cover object-center sm:max-h-[560px] group-hover:scale-103 transition-transform duration-700"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#15110D]/60 via-transparent to-transparent pointer-events-none" />
-
-              {/* Decorative script overlay on top right */}
-              <div className="absolute top-4 right-4 text-right pointer-events-none">
-                <span className="font-serif italic text-amber-200/90 text-sm sm:text-base drop-shadow-md block">
-                  {activeSlide.callout}
-                </span>
-              </div>
-            </div>
-
             {/* Floating Gold Rate Card (Matching media_1789750060908.jpg) */}
             <div className="relative mt-8 w-full max-w-[350px] rounded-2xl border-2 border-[#C9A227]/55 bg-[#FFFDF8]/95 px-5 py-4 text-left shadow-2xl backdrop-blur-md transition-all hover:border-[#C9A227] sm:mt-0">
               
