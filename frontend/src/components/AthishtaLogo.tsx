@@ -26,7 +26,7 @@ export const AthishtaLogo: React.FC<AthishtaLogoProps> = ({
           className={`${sizeDimensions[size]} rounded-full shadow-md flex items-center justify-center relative overflow-hidden shrink-0 transition-transform group-hover:scale-105`}
         >
           <img
-            src="/image.png"
+            src="/image-transparent.png"
             alt="Athishta Gold Company"
             className="w-full h-full object-cover"
           />
