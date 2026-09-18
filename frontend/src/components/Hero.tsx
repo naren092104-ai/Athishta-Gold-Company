@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { MessageCircle, ArrowRight, ShieldCheck, ChevronLeft, ChevronRight, Coins, Clock } from 'lucide-react';
+import React from 'react';
+import { MessageCircle, ArrowRight, ShieldCheck, Coins, Clock } from 'lucide-react';
 import { GoldRates, GoldRateData } from '../types';
 import { getWhatsAppUrl } from '../services/whatsappService';
 
@@ -16,9 +16,6 @@ export const Hero: React.FC<HeroProps> = ({
   rateData,
   onOpenQuoteModal,
 }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
   const slides = [
     {
       eyebrow: 'TRUSTED GOLD SERVICES • TAMIL NADU',
@@ -49,23 +46,6 @@ export const Hero: React.FC<HeroProps> = ({
     },
   ];
 
-  // Auto-play carousel every 7 seconds when not paused
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [isPaused, slides.length]);
-
-  const handlePrev = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
   const handleQuoteClick = () => {
     const el = document.getElementById('gold-calculator');
     if (el) {
@@ -95,13 +75,11 @@ export const Hero: React.FC<HeroProps> = ({
       })
     : '18 Sep 2026, 10:45 AM';
 
-  const activeSlide = slides[currentSlide];
+  const activeSlide = slides[0];
 
   return (
     <section
       id="home"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       className="relative min-h-[590px] overflow-hidden border-b border-[#C9A227]/25 bg-[#6A431F] bg-cover bg-center pt-8 pb-16 sm:pt-12 sm:pb-20 lg:min-h-[540px] lg:pt-8 lg:pb-10"
       style={{
         backgroundImage: `linear-gradient(90deg, rgba(255, 252, 244, 0.98) 0%, rgba(255, 252, 244, 0.91) 39%, rgba(255, 252, 244, 0.22) 67%, rgba(39, 20, 8, 0.28) 100%), url("${activeSlide.image}")`,
@@ -197,45 +175,6 @@ export const Hero: React.FC<HeroProps> = ({
               <span className="font-serif italic text-[#C9A227] text-2xl sm:text-3xl tracking-wide block drop-shadow-2xs">
                 “More Than Gold It's Trust”
               </span>
-            </div>
-
-            {/* Carousel Navigation Arrows + Pagination Indicators */}
-            <div className="flex items-center gap-4 pt-3">
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  className="w-9 h-9 rounded-full bg-[#FFFDF8] border border-[#C9A227]/40 hover:bg-[#FAF5EC] flex items-center justify-center text-[#15110D] shadow-xs transition-all cursor-pointer hover:scale-105 active:scale-95"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-4 h-4 text-[#C9A227]" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="w-9 h-9 rounded-full bg-[#FFFDF8] border border-[#C9A227]/40 hover:bg-[#FAF5EC] flex items-center justify-center text-[#15110D] shadow-xs transition-all cursor-pointer hover:scale-105 active:scale-95"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-4 h-4 text-[#C9A227]" />
-                </button>
-              </div>
-
-              {/* Dots / Pills */}
-              <div className="flex items-center gap-1.5">
-                {slides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setCurrentSlide(idx)}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${
-                      currentSlide === idx
-                        ? 'w-8 bg-gradient-to-r from-[#C9A227] to-[#E2BE4B]'
-                        : 'w-2 bg-[#C9A227]/30 hover:bg-[#C9A227]/60'
-                    }`}
-                    aria-label={`Slide ${idx + 1}`}
-                  />
-                ))}
-              </div>
             </div>
 
           </div>
