@@ -33,27 +33,27 @@ export const TopAnnouncementBar: React.FC = () => {
 
           <div className="hidden sm:flex items-center gap-2.5 text-[#C9A227] border-l border-white/20 pl-3.5">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/athishtagoldcompany?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors"
               title="Instagram"
             >
               <Instagram className="w-3.5 h-3.5" />
             </a>
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/people/Athishta-Gold-Company/61585687775557/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors"
               title="Facebook"
             >
               <Facebook className="w-3.5 h-3.5" />
             </a>
             <a
-              href="https://youtube.com"
+              href="https://www.youtube.com/@athishtagoldbuyingcompany"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors"
               title="YouTube"
             >

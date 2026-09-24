@@ -31,7 +31,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateSection }) => {
     { label: 'Home', id: 'home' },
     { label: 'About Athishta', id: 'about' },
     { label: 'Our Services', id: 'services' },
-    { label: "Today's Gold Rate", id: 'gold-rate' },
     { label: 'Branch Directory', id: 'branches' },
     { label: 'Customer Testimonials', id: 'testimonials' },
   ];
@@ -129,27 +128,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateSection }) => {
             <div className="flex items-center gap-3 pt-1">
               <span className="text-xs text-[#9E978C] font-medium mr-1">Follow Us:</span>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/people/Athishta-Gold-Company/61585687775557/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-white/5 border border-[#C9A227]/30 flex items-center justify-center text-[#C9A227] hover:bg-[#C9A227] hover:text-[#15110D] transition-all"
                 title="Facebook"
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/athishtagoldcompany?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-white/5 border border-[#C9A227]/30 flex items-center justify-center text-[#C9A227] hover:bg-[#C9A227] hover:text-[#15110D] transition-all"
                 title="Instagram"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@athishtagoldbuyingcompany"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-white/5 border border-[#C9A227]/30 flex items-center justify-center text-[#C9A227] hover:bg-[#C9A227] hover:text-[#15110D] transition-all"
                 title="YouTube"
               >

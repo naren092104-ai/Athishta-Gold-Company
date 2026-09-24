@@ -23,7 +23,7 @@ export const Hero: React.FC<HeroProps> = ({
       titleLine2: 'Its True Value.',
       desc: 'Sell your gold with complete confidence. Transparent evaluation, fair market pricing, and instant bank payment only at Athishta Gold Company.',
       image: '/hero_bangle_model.jpg',
-      imageAlt: 'South Indian woman examining traditional gold bangle at Athishta Gold Company',
+      imageAlt: 'South Indian woman wearing traditional gold bangles and jewellery at Athishta Gold Company',
       callout: 'Gold Builds a Brighter Tomorrow',
     },
     {
@@ -83,6 +83,8 @@ export const Hero: React.FC<HeroProps> = ({
       className="relative min-h-[590px] overflow-hidden border-b border-[#C9A227]/25 bg-[#6A431F] bg-cover bg-center pt-8 pb-16 sm:pt-12 sm:pb-20 lg:min-h-[540px] lg:pt-8 lg:pb-10"
       style={{
         backgroundImage: `linear-gradient(90deg, rgba(255, 252, 244, 0.98) 0%, rgba(255, 252, 244, 0.91) 39%, rgba(255, 252, 244, 0.22) 67%, rgba(39, 20, 8, 0.28) 100%), url("${activeSlide.image}")`,
+        backgroundPosition: 'center 25%',
+        backgroundSize: 'cover',
       }}
     >
       <div className="hero-readability-overlay absolute inset-0 bg-gradient-to-t from-[#5B3213]/45 via-transparent to-transparent pointer-events-none" />
@@ -103,13 +105,13 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="space-y-6 text-left lg:col-span-7 lg:max-w-[700px]">
             
             {/* Small Gold Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 border-b border-[#C9A227]/55 pb-2 text-xs font-bold tracking-wider text-[#A97916] uppercase">
-              <ShieldCheck className="w-4 h-4 text-[#C9A227]" />
+            <div className="inline-flex items-center gap-2 border-b border-[#A90000]/25 pb-2 text-[10px] font-bold tracking-[0.22em] text-[#8B0000] uppercase">
+              <ShieldCheck className="w-4 h-4 text-[#C99A24]" />
               <span>{activeSlide.eyebrow}</span>
             </div>
 
             {/* Main Heading with Staggered Transition */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-serif font-extrabold text-[#15110D] tracking-tight leading-[1.12]">
+            <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-serif font-extrabold text-[#17110F] tracking-tight leading-[1.12]">
               {activeSlide.titleLine1} <br />
               <span className="gold-gradient-text drop-shadow-xs">{activeSlide.titleLine2}</span>
             </h1>
@@ -124,7 +126,7 @@ export const Hero: React.FC<HeroProps> = ({
               <button
                 type="button"
                 onClick={handleQuoteClick}
-                className="px-7 py-3.5 rounded-xl font-bold text-sm text-[#15110D] bg-gradient-to-r from-[#C9A227] via-[#E2BE4B] to-[#C9A227] hover:brightness-105 transition-all flex items-center gap-2 shadow-lg shadow-[#C9A227]/25 cursor-pointer active:scale-98 hover:-translate-y-0.5"
+                className="px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#A90000] via-[#B21212] to-[#8B0000] hover:brightness-105 transition-all flex items-center gap-2 shadow-[0_16px_30px_rgba(169,0,0,0.18)] cursor-pointer active:scale-98 hover:-translate-y-0.5"
               >
                 <span>Get Gold Quote</span>
                 <ArrowRight className="w-4 h-4" />
@@ -134,9 +136,9 @@ export const Hero: React.FC<HeroProps> = ({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-7 py-3.5 rounded-xl font-bold text-sm text-[#15110D] bg-[#FFFDF8] hover:bg-[#FAF5EC] border border-[#C9A227]/45 transition-all flex items-center gap-2.5 cursor-pointer active:scale-98 shadow-xs hover:-translate-y-0.5"
+                className="px-7 py-3.5 rounded-xl font-bold text-sm text-[#17110F] bg-[#FFFDF8] hover:bg-[#FAF5EC] border border-[#C99A24]/50 transition-all flex items-center gap-2.5 cursor-pointer active:scale-98 shadow-[0_10px_20px_rgba(23,17,15,0.06)] hover:-translate-y-0.5"
               >
-                <MessageCircle className="w-4 h-4 text-[#C9A227] fill-[#C9A227]/20" />
+                <MessageCircle className="w-4 h-4 text-[#A90000] fill-[#A90000]/20" />
                 <span>WhatsApp Us</span>
               </a>
             </div>

@@ -60,6 +60,35 @@ export const BRANCHES_DATA: Branch[] = [
     nearbyLandmarks: ['Varadharajapuram', 'T I Cycle Road', 'Ambattur Industrial Estate Vicinity']
   },
   {
+    id: 'perambur',
+    slug: 'perambur',
+    name: 'Perambur Branch (Chennai)',
+    isHeadOffice: false,
+    address: {
+      line1: 'No. 25, Perambur High Road',
+      line2: 'Perambur',
+      landmark: 'Near Perambur High Road',
+      city: 'Perambur',
+      district: 'Chennai',
+      pincode: '600011',
+      state: 'Tamil Nadu',
+      fullFormatted: 'No. 25, Perambur High Road, Perambur – 600011, Chennai, Tamil Nadu'
+    },
+    phone: '+91 93636 39955',
+    whatsapp: '919363639955',
+    hours: '09:30 AM – 08:30 PM',
+    days: 'Monday to Sunday',
+    coordinates: {
+      lat: 13.1125,
+      lng: 80.2338
+    },
+    googleMapsUrl: 'https://maps.google.com/?q=No.+25+Perambur+High+Road+Perambur+Chennai+600011',
+    directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=13.1125,80.2338',
+    imageUrl: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80',
+    features: ['North Chennai Branch', 'Perambur High Road Access', 'Gold Buying & Selling', 'Same Day Bank Settlement'],
+    nearbyLandmarks: ['Perambur High Road', 'Perambur Railway Area', 'Muthumariamman Temple Road']
+  },
+  {
     id: 'avadi',
     slug: 'avadi',
     name: 'Avadi Branch (Chennai)',

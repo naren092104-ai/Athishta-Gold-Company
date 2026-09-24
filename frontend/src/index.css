@@ -2,25 +2,30 @@
 
 @layer base {
   :root {
-    --gold: #C9A227;
-    --gold-dark: #A8831A;
-    --gold-light: #F4E7BD;
-    --dark: #15110D;
-    --cream: #FAF6EF;
-    --white: #FFFDF8;
-    --text: #15110D;
-    --muted: #554F47;
+    --brand-red: #A90000;
+    --brand-red-deep: #8B0000;
+    --brand-gold: #C99A24;
+    --brand-gold-soft: #D4AF37;
+    --dark: #17110F;
+    --cream: #FBF7ED;
+    --white: #FFFFFF;
+    --text: #17110F;
+    --muted: #5a514a;
+    --line: rgba(201, 154, 36, 0.26);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #FAF6EF;
-    background-image: 
-      radial-gradient(ellipse at 50% 0%, rgba(201, 162, 39, 0.08) 0%, transparent 65%),
-      radial-gradient(ellipse at 80% 50%, rgba(201, 162, 39, 0.04) 0%, transparent 50%),
-      radial-gradient(ellipse at 20% 80%, rgba(201, 162, 39, 0.05) 0%, transparent 60%);
+    background-color: #f7f1e7;
+    background-image:
+      radial-gradient(ellipse at top, rgba(169, 0, 0, 0.05), transparent 32%),
+      radial-gradient(ellipse at bottom right, rgba(201, 154, 36, 0.06), transparent 28%);
     background-attachment: fixed;
-    color: #15110D;
+    color: var(--text);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -30,15 +35,24 @@
     font-family: 'Playfair Display', Georgia, serif;
     letter-spacing: -0.02em;
   }
+
+  section {
+    position: relative;
+  }
+
+  ::selection {
+    background: rgba(201, 154, 36, 0.25);
+    color: var(--text);
+  }
 }
 
 /* Gold Accent Text & Gradients */
 .gold-text-accent {
-  color: #C9A227;
+  color: var(--brand-gold);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #A8831A 0%, #D8B237 40%, #F5D36B 60%, #9F7913 100%);
+  background: linear-gradient(135deg, #8B0000 0%, #C99A24 35%, #E7C25B 60%, #8B0000 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -143,6 +157,42 @@
   animation: floatSlow 5s ease-in-out infinite;
 }
 
+/* Keep branch discovery moving without taking away the card actions. */
+.branch-marquee-window {
+  overflow: hidden;
+  width: 100%;
+}
+
+.branch-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: branchMarquee 28s linear infinite;
+}
+
+.branch-marquee-group {
+  display: flex;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.branch-marquee-card {
+  flex: 0 0 min(360px, calc(100vw - 2rem));
+}
+
+.branch-marquee-window:hover .branch-marquee-track,
+.branch-marquee-window:focus-within .branch-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes branchMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .branch-marquee-track { animation: none; }
+}
+
 /* Liquid Gold Flow Animation */
 @keyframes liquidFlow {
   0% {
@@ -171,13 +221,13 @@
   @keyframes howWorksCardIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   @media (prefers-reduced-motion: reduce) { .how-works-card { animation: none; } .how-works-card:hover { transform: none; } }
 
-  .gold-rate-showcase { background-color: #fffaf0; background-image: radial-gradient(circle at 13% 17%, rgba(238, 190, 67, 0.2) 0 1px, transparent 2px), radial-gradient(circle at 86% 20%, rgba(215, 157, 27, 0.18) 0 2px, transparent 3px), radial-gradient(ellipse at 50% 38%, rgba(255, 255, 255, 0.92), transparent 58%), linear-gradient(115deg, #fffaf0 0%, #f7e6b5 100%); background-size: 120px 140px, 160px 180px, auto, auto; }
-  .gold-rate-showcase::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.26; background: radial-gradient(ellipse at 9% 70%, rgba(198, 133, 18, 0.45), transparent 27%), radial-gradient(ellipse at 91% 8%, rgba(220, 168, 43, 0.44), transparent 26%); filter: blur(22px); }
-  .gold-rate-temple { opacity: 0.18; background-image: linear-gradient(90deg, transparent 0 77%, rgba(168, 113, 18, 0.34) 80%, transparent 84%), linear-gradient(135deg, transparent 0 45%, rgba(188, 129, 17, 0.24) 46% 48%, transparent 49%); background-size: 100% 100%, 100% 100%; background-position: center; background-repeat: no-repeat; mix-blend-mode: multiply; }
-  .gold-rate-ribbon { height: 145px; background: radial-gradient(ellipse at 15% 100%, rgba(196, 139, 27, 0.52), transparent 40%), radial-gradient(ellipse at 82% 100%, rgba(225, 177, 54, 0.48), transparent 44%), linear-gradient(170deg, transparent 35%, rgba(235, 190, 69, 0.42) 37% 43%, transparent 45%); filter: blur(4px); }
-  .gold-rate-card { border: 1px solid rgba(205, 157, 41, 0.42); background: rgba(255, 253, 248, 0.94); box-shadow: 0 14px 34px rgba(84, 54, 16, 0.14); transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease; }
-  .gold-rate-card:hover { transform: translateY(-6px); border-color: rgba(205, 157, 41, 0.82); box-shadow: 0 22px 42px rgba(84, 54, 16, 0.2); }
-  .gold-rate-card-featured { border: 2px solid #C9971E; background: linear-gradient(145deg, rgba(255, 253, 248, 0.98), rgba(250, 242, 215, 0.96)); }
+  .gold-rate-showcase { background-color: transparent; background-image: none; }
+  .gold-rate-showcase::before { display: none; }
+  .gold-rate-temple { display: none; }
+  .gold-rate-ribbon { display: none; }
+  .gold-rate-card { border: 0; background: transparent; box-shadow: none; transition: none; }
+  .gold-rate-card:hover { transform: none; border-color: transparent; box-shadow: none; }
+  .gold-rate-card-featured { border: 0; background: transparent; box-shadow: none; }
   @media (prefers-reduced-motion: reduce) { .gold-rate-card:hover { transform: none; } }
 
   @media (max-width: 767px) {

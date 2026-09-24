@@ -1,5 +1,5 @@
 import React from 'react';
-import { Coins, Sparkles, ShieldAlert, FileText, Home } from 'lucide-react';
+import { ArrowRight, ArrowRightLeft, Coins, FileText, Home, ShieldCheck, Sparkles } from 'lucide-react';
 
 interface ServicesProps {
   onOpenQuoteModal: (serviceName?: string) => void;
@@ -10,75 +10,96 @@ export const Services: React.FC<ServicesProps> = ({ onOpenQuoteModal }) => {
     {
       id: 'gold-buying',
       name: 'Gold Buying',
-      sentence: 'Immediate settlement for your gold jewellery at fair market rates.',
+      description: 'Bring in jewellery you no longer wear. We test it with you and settle the value immediately.',
       icon: Coins,
     },
     {
       id: 'gold-selling',
       name: 'Gold Selling',
-      sentence: 'Highest return value for family gold with certified purity appraisal.',
+      description: 'Get a fair return for family gold, with the purity, weight, and price clearly explained.',
       icon: Sparkles,
     },
     {
-      id: 'pawn-redemption',
-      name: 'Pawn Redemption',
-      sentence: 'Hassle-free release assistance to redeem pledged gold from pawnshops or banks.',
-      icon: ShieldAlert,
+      id: 'gold-exchange',
+      name: 'Gold Exchange',
+      description: 'Give old jewellery a new beginning and move its value into a design you will love wearing.',
+      icon: ArrowRightLeft,
     },
     {
       id: 'instant-gold-quote',
       name: 'Instant Gold Quote',
-      sentence: 'Transparent valuation in minutes using certified German XRF testing.',
+      description: 'Know what your gold is worth in minutes, with a straightforward valuation and no guesswork.',
       icon: FileText,
+    },
+    {
+      id: 'pawn-redemption',
+      name: 'Pawn Redemption',
+      description: 'We help you understand the redemption process and get your pledged gold back with less stress.',
+      icon: ShieldCheck,
     },
     {
       id: 'doorstep-service',
       name: 'Doorstep Service',
-      sentence: 'Secure, confidential gold evaluation and payment at your home.',
+      description: 'Prefer to stay home? Our team can visit for a private evaluation and secure payment.',
       icon: Home,
     },
   ];
 
   return (
-    <section id="services" className="py-12 sm:py-16 lg:py-20 bg-[#FFFDF8] border-b border-[#C9A227]/15">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#171717]">
-            Our Services
+    <section id="services" className="bg-[#F8F3E8] py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <span className="h-px w-12 bg-[#C9A227]/60" />
+            <span className="inline-flex h-3 w-3 items-center justify-center rounded-full border border-[#C9A227]/70 bg-[#F8F3E8]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#C9A227]" />
+            </span>
+            <span className="h-px w-12 bg-[#C9A227]/60" />
+          </div>
+
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#171717] sm:text-4xl lg:text-[3rem]">
+            Our <span className="text-[#C99622]">Services</span>
           </h2>
-          <p className="text-sm sm:text-base text-[#6F6A60] mt-2">
-            Professional and transparent gold valuation services across Tamil Nadu.
+          <p className="mt-4 text-sm text-[#6F6A60] sm:text-base">
+            Whatever brings you in, our people take the time to listen, explain, and help you choose what feels right.
           </p>
         </div>
 
-        {/* 5 Large Elegant Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.id}
                 onClick={() => onOpenQuoteModal(service.name)}
-                className="bg-[#FFFDF8] hover:bg-[#F8F3E8]/60 border border-[#C9A227]/25 hover:border-[#C9A227]/60 rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer group"
+                className="group flex min-h-[200px] cursor-pointer flex-col justify-between rounded-xl border border-[#C9A227]/30 bg-[#FFFDF8] p-6 shadow-[0_6px_18px_rgba(76,51,15,0.035)] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9A227]/60 hover:shadow-[0_12px_24px_rgba(76,51,15,0.07)]"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-xl bg-[#F8F3E8] border border-[#C9A227]/30 flex items-center justify-center text-[#C9A227] mb-5 group-hover:scale-105 transition-transform">
-                    <Icon className="w-6 h-6 stroke-[1.75]" />
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#C9A227]/40 bg-[#F9F0DB] text-[#C99622]">
+                    <Icon className="h-6 w-6 stroke-[1.7]" />
                   </div>
-                  <h3 className="font-serif font-bold text-lg text-[#171717] group-hover:text-[#C9A227] transition-colors mb-2">
+
+                  <button
+                    type="button"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[#C9A227]/45 bg-transparent text-[#C99622] transition-colors group-hover:bg-[#F5E7B7] group-hover:border-[#C9A227]"
+                    aria-label={`Open ${service.name}`}
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+
+                <div className="mt-7">
+                  <h3 className="font-serif text-[1.7rem] font-bold leading-tight text-[#171717]">
                     {service.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#6F6A60] leading-relaxed">
-                    {service.sentence}
+                  <p className="mt-3 text-sm leading-relaxed text-[#655E53]">
+                    {service.description}
                   </p>
                 </div>
               </div>
             );
           })}
         </div>
-
       </div>
     </section>
   );

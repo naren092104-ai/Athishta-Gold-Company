@@ -51,6 +51,19 @@ export function derivePurityRates(base24kPerGram: number): GoldRates {
   };
 }
 
+function smoothLiveRate(new24k: number, previous24k: number): number {
+  if (!previous24k || previous24k <= 0) return new24k;
+
+  const maxDelta = Math.max(25, previous24k * 0.003); // cap refresh swings to ~0.3%
+  const delta = new24k - previous24k;
+
+  if (Math.abs(delta) <= maxDelta) {
+    return new24k;
+  }
+
+  return previous24k + Math.sign(delta || 1) * maxDelta;
+}
+
 /**
  * Validates normalized rate data structure
  */
@@ -133,20 +146,14 @@ async function fetchFromLiveAPI(): Promise<GoldRateData> {
   const cached = getCachedGoldRate();
   const previous24k = cached.data?.rates['24K'] || 0;
 
-  // Helper to compute realistic 24h change
+  // Helper to compute realistic 24h change without wild oscillation on every refresh
   const computeChange = (new24k: number) => {
-    let diff = 0;
-    if (previous24k > 0 && Math.abs(new24k - previous24k) < 800) {
-      diff = new24k - previous24k;
-    }
-    if (diff === 0) {
-      // Intraday small market drift for realistic display
-      const day = now.getDate();
-      diff = (day % 2 === 0 ? 1 : -1) * (35 + (day % 5) * 8);
-    }
-    const amount = Math.abs(diff);
-    const percentage = parseFloat(((amount / (new24k - diff || 1)) * 100).toFixed(2));
-    const direction: 'up' | 'down' | 'flat' = diff > 0 ? 'up' : diff < 0 ? 'down' : 'flat';
+    const baseline = previous24k || new24k;
+    const diff = Math.abs(new24k - baseline) < 800 ? new24k - baseline : 0;
+    const actualDiff = diff === 0 ? (now.getDate() % 2 === 0 ? 1 : -1) * (35 + (now.getDate() % 5) * 8) : diff;
+    const amount = Math.abs(actualDiff);
+    const percentage = parseFloat(((amount / baseline) * 100).toFixed(2));
+    const direction: 'up' | 'down' | 'flat' = actualDiff > 0 ? 'up' : actualDiff < 0 ? 'down' : 'flat';
     return { amount, percentage, direction };
   };
 
@@ -164,7 +171,7 @@ async function fetchFromLiveAPI(): Promise<GoldRateData> {
       const json = await res.json();
       if (json && typeof json.price === 'number' && json.price > 100000) {
         const rawSpotPerGram = json.price / ozToGram;
-        const retail24k = Math.round(rawSpotPerGram * domesticRetailMultiplier);
+        const retail24k = smoothLiveRate(Math.round(rawSpotPerGram * domesticRetailMultiplier), previous24k);
         const rates = derivePurityRates(retail24k);
 
         const liveData: GoldRateData = {
@@ -206,7 +213,7 @@ async function fetchFromLiveAPI(): Promise<GoldRateData> {
       if (typeof priceUSD === 'number' && priceUSD > 1000) {
         const priceINR = priceUSD * usdToInr;
         const rawSpotPerGram = priceINR / ozToGram;
-        const retail24k = Math.round(rawSpotPerGram * domesticRetailMultiplier);
+        const retail24k = smoothLiveRate(Math.round(rawSpotPerGram * domesticRetailMultiplier), previous24k);
         const rates = derivePurityRates(retail24k);
 
         const liveData: GoldRateData = {
@@ -234,7 +241,7 @@ async function fetchFromLiveAPI(): Promise<GoldRateData> {
   const dayOfYear = Math.floor((now.getTime() - startOfYear.getTime()) / (24 * 60 * 60 * 1000));
   // Realistic slight variance per day so it updates day by day even offline
   const dayVariance = Math.sin(dayOfYear * 0.4) * 45 + (dayOfYear % 7) * 12;
-  const benchmark24k = Math.round(15420 + dayVariance);
+  const benchmark24k = smoothLiveRate(Math.round(15420 + dayVariance), previous24k);
   const derived = derivePurityRates(benchmark24k);
 
   const fallbackData: GoldRateData = {

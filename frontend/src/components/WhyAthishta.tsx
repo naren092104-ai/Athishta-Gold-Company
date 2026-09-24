@@ -47,7 +47,7 @@ export const WhyAthishta: React.FC = () => {
                 Why Athishta?
               </h2>
               <p className="text-sm sm:text-base text-[#554F47] mt-3 leading-relaxed">
-                We are committed to delivering unmatched honesty, dignity, and certified market value for your precious family gold.
+                We are committed to delivering unmatched honesty, dignity, and certified market value for your precious gold.
               </p>
             </div>
 

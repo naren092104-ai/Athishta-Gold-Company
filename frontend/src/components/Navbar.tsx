@@ -20,12 +20,12 @@ export const Navbar: React.FC<NavbarProps> = ({
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['home', 'about', 'services', 'gold-rate', 'branches', 'contact'];
+      const sections = ['home', 'about', 'services', 'branches', 'contact'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120 && rect.bottom >= 120) {
+          if (rect.top <= 160 && rect.bottom >= 160) {
             setActiveSection(sectionId);
             break;
           }
@@ -40,9 +40,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navItems = [
     { label: 'Home', id: 'home' },
     { label: 'About', id: 'about' },
-    { label: 'Services', id: 'services' },
-    { label: 'Gold Rate', id: 'gold-rate' },
-    { label: 'Branches', id: 'branches' },
+    { label: 'Our Service', id: 'services' },
+    { label: 'Our Branch', id: 'branches' },
     { label: 'Contact', id: 'contact' },
   ];
 
@@ -71,11 +70,11 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header
       className={`sticky top-0 z-50 transition-all duration-200 bg-[#FFFDF8]/95 backdrop-blur-md ${
         isScrolled
-          ? 'shadow-sm border-b border-[#C9A227]/25 py-3'
-          : 'border-b border-[#C9A227]/15 py-4'
+          ? 'border-b border-[#A90000]/20 py-3 shadow-[0_12px_28px_rgba(23,17,15,0.08)]'
+          : 'border-b border-[#A90000]/10 py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
         {/* LEFT: Athishta Gold Logo */}
         <button
@@ -86,17 +85,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* CENTER: Clean 6 Nav Links with Luxury Active Pill */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+        <nav className="hidden items-center justify-center gap-5 lg:flex">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-4 py-1.5 text-[14px] rounded-full transition-all cursor-pointer ${
+                className={`min-w-[70px] rounded-full px-4 py-2 text-[14px] font-medium transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#FAF3E0] text-[#8C6D1F] font-bold shadow-2xs border border-[#C9A227]/35'
-                    : 'text-[#171717] hover:text-[#C9A227] hover:bg-[#FAF5EC] font-medium'
+                    ? 'border border-[#A90000]/20 bg-[#F9F0D9] text-[#8B0000] shadow-[0_0_0_1px_rgba(169,0,0,0.08)]'
+                    : 'text-[#171717] hover:text-[#A90000]'
                 }`}
               >
                 {item.label}
@@ -106,23 +105,23 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* RIGHT: Search + Get Quote + WhatsApp */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden items-center gap-3 sm:flex">
           <button
             type="button"
             onClick={() => {
               const el = document.getElementById('gold-calculator');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="w-9 h-9 rounded-full bg-[#FAF5EC] hover:bg-[#F8F3E8] border border-[#C9A227]/30 flex items-center justify-center text-[#15110D] hover:text-[#C9A227] transition-all cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#C9A227]/30 bg-[#FAF5EC] text-[#15110D] transition-all hover:bg-[#F8F3E8] hover:text-[#C9A227] cursor-pointer"
             title="Search Valuation or Branches"
             aria-label="Search"
           >
-            <Search className="w-4 h-4" />
+            <Search className="h-4 w-4" />
           </button>
 
           <button
             onClick={handleGetQuoteClick}
-            className="px-5 py-2 text-xs font-bold text-[#15110D] bg-[#FFFDF8] hover:bg-[#FAF3E0] border border-[#C9A227]/50 rounded-full transition-all cursor-pointer shadow-2xs hover:-translate-y-0.5"
+            className="rounded-full border border-[#A90000]/30 bg-[#FFFDF8] px-5 py-2 text-xs font-bold text-[#8B0000] shadow-[0_4px_10px_rgba(169,0,0,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#A90000] hover:bg-[#F9F1E6] cursor-pointer"
           >
             Get Quote
           </button>
@@ -131,9 +130,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-5 py-2 text-xs font-bold text-[#15110D] bg-gradient-to-r from-[#C9A227] via-[#DFB83D] to-[#C9A227] hover:brightness-105 rounded-full transition-all shadow-sm cursor-pointer hover:-translate-y-0.5"
+            className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#A90000] via-[#B21212] to-[#8B0000] px-5 py-2 text-xs font-bold text-white shadow-[0_6px_18px_rgba(169,0,0,0.22)] transition-all hover:-translate-y-0.5 hover:brightness-105 cursor-pointer"
           >
-            <MessageCircle className="w-3.5 h-3.5 fill-current" />
+            <MessageCircle className="h-3.5 w-3.5 fill-current" />
             <span>WhatsApp</span>
           </a>
         </div>

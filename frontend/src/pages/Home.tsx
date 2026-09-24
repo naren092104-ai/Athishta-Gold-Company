@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { TopAnnouncementBar } from '../components/TopAnnouncementBar';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
-import { TrustBar } from '../components/TrustBar';
-import { GoldRateSection } from '../components/GoldRateSection';
 import { GoldCalculatorSection } from '../components/GoldCalculatorSection';
 import { Services } from '../components/Services';
 import { HowItWorks } from '../components/HowItWorks';
 import { WhyAthishta } from '../components/WhyAthishta';
 import { BranchLocator } from '../components/BranchLocator';
 import { Testimonials } from '../components/Testimonials';
+import { FAQ } from '../components/FAQ';
+import { GoldRateSection } from '../components/GoldRateSection';
+import { Contact } from '../components/Contact';
 import { CtaBanner } from '../components/CtaBanner';
 import { Footer } from '../components/Footer';
 import { MobileBottomBar } from '../components/MobileBottomBar';
@@ -24,8 +25,14 @@ export const Home: React.FC = () => {
   const [confirmationDetails, setConfirmationDetails] = useState<ConfirmationDetails | null>(null);
 
   const handleOpenQuoteModal = (serviceName?: string) => {
+    const el = document.getElementById('gold-calculator');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setSelectedQuoteService(serviceName || 'Instant Gold Quote');
+      return;
+    }
+
     setSelectedQuoteService(serviceName || 'Instant Gold Quote');
-    setIsQuoteModalOpen(true);
   };
 
   const handleScrollToSection = (sectionId: string) => {
@@ -42,9 +49,6 @@ export const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#F8F3E8] text-[#171717] font-sans selection:bg-[#C9A227]/20 selection:text-[#171717] pb-16 sm:pb-0">
       
-      {/* 0. Top Announcement Bar */}
-      <TopAnnouncementBar />
-
       {/* 1. Header / Sticky Navbar */}
       <Navbar
         onOpenQuoteModal={handleOpenQuoteModal}
@@ -60,10 +64,16 @@ export const Home: React.FC = () => {
           onScrollToSection={handleScrollToSection}
         />
 
-        {/* 3. Trust Bar: Exactly 4 icon items */}
-        <TrustBar />
+        {/* 5. About Athishta: Split layout with 4 bullets */}
+        <WhyAthishta />
 
-        {/* 4. Gold Rate: 24K, 22K, 18K live cards */}
+        {/* 6. Our Services: Exactly 5 services */}
+        <Services onOpenQuoteModal={handleOpenQuoteModal} />
+
+        {/* 7. How It Works: 4-Step horizontal timeline */}
+        <HowItWorks />
+
+        {/* 9. Gold Rate: dedicated rate showcase */}
         <GoldRateSection
           rates={rates}
           rateData={rateData}
@@ -71,29 +81,26 @@ export const Home: React.FC = () => {
           onRefresh={refreshRate}
         />
 
-        {/* 5. Our Services: Exactly 5 services */}
-        <Services onOpenQuoteModal={handleOpenQuoteModal} />
-
-        {/* 7. How It Works: 4-Step horizontal timeline */}
-        <HowItWorks />
-
-        {/* 8. Why Athishta: Split layout with 4 bullets */}
-        <WhyAthishta />
-
-        {/* 9. Branches: 3-col desktop / 2-col tablet / 1-col mobile */}
+        {/* 10. Branches: 3-col desktop / 2-col tablet / 1-col mobile */}
         <BranchLocator />
 
-        {/* 10. Testimonials: 3 real customer reviews */}
+        {/* 11. Testimonials: 3 real customer reviews */}
         <Testimonials />
 
-        {/* 11. Final CTA: Dark luxury section */}
+        {/* 12. FAQ */}
+        <FAQ />
+
+        {/* 13. Final premium conversion section: one combined gold quote experience */}
+        <GoldCalculatorSection rates={rates} rateData={rateData} />
+
+        {/* 14. Final CTA */}
         <CtaBanner onOpenQuoteModal={() => handleOpenQuoteModal('Instant Gold Quote')} />
 
-        {/* 12. Final gold quote journey, immediately before the footer */}
-        <GoldCalculatorSection rates={rates} rateData={rateData} />
+        {/* 15. Contact */}
+        <Contact />
       </main>
 
-      {/* 12. Simple Footer */}
+      {/* 16. Simple Footer */}
       <Footer onNavigateSection={handleScrollToSection} />
 
       {/* 13. Mobile Bottom Sticky Bar */}

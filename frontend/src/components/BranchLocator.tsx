@@ -31,6 +31,14 @@ export const BranchLocator: React.FC = () => {
       directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Ambattur',
     },
     {
+      id: 'perambur',
+      name: 'Perambur',
+      city: 'Chennai',
+      shortAddress: '25 Perambur High Road, Perambur',
+      phone: '+919363639955',
+      directionsUrl: 'https://maps.google.com/?q=Athishta+Gold+Company+Perambur',
+    },
+    {
       id: 'avadi',
       name: 'Avadi',
       city: 'Chennai',
@@ -78,13 +86,16 @@ export const BranchLocator: React.FC = () => {
           </p>
         </div>
 
-        {/* 3 Columns Desktop | 2 Columns Tablet | 1 Column Mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {branches.map((b) => (
-            <div
-              key={b.id}
-              className="bg-[#FFFDF8] rounded-2xl border border-[#C9A227]/25 overflow-hidden shadow-xs hover:border-[#C9A227]/60 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
-            >
+        {/* One-line branch marquee; it pauses while the customer interacts. */}
+        <div className="branch-marquee-window">
+          <div className="branch-marquee-track">
+            {[branches, branches].map((branchSet, setIndex) => (
+              <div className="branch-marquee-group" key={setIndex} aria-hidden={setIndex === 1}>
+                {branchSet.map((b) => (
+                  <div
+                    key={`${setIndex}-${b.id}`}
+                    className="branch-marquee-card bg-[#FFFDF8] rounded-2xl border border-[#C9A227]/25 overflow-hidden shadow-xs hover:border-[#C9A227]/60 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                  >
               {/* Clean Image Area with 'Branch Photo Coming Soon' Fallback */}
               <div className="relative h-48 sm:h-52 bg-gradient-to-br from-[#1C1814] via-[#15110D] to-[#120D0A] flex flex-col items-center justify-center p-6 text-center overflow-hidden">
                 
@@ -152,8 +163,11 @@ export const BranchLocator: React.FC = () => {
 
               </div>
 
-            </div>
-          ))}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
